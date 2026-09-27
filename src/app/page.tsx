@@ -36,8 +36,11 @@ export default function TarotEspeculativoApp() {
     mensagem: "",
   });
 
-  // Check saved session on mount
+  const [montado, setMontado] = useState(false);
+
+  // Check saved session on mount and mark client mounted
   useEffect(() => {
+    setMontado(true);
     const salva = carregarSessao();
     if (salva) {
       setSessaoSalva(salva);
@@ -224,6 +227,23 @@ export default function TarotEspeculativoApp() {
   };
 
   const cartaAtiva = cartas[cartaAtivaIndex];
+
+  if (!montado) {
+    return (
+      <div
+        className="flex min-h-screen flex-col bg-paper text-ink"
+        suppressHydrationWarning
+      >
+        <div className="border-b border-line bg-paper/90 py-3 px-4 sm:px-6">
+          <div className="mx-auto flex max-w-7xl items-center justify-between">
+            <span className="font-serif text-lg font-bold tracking-wide text-ink">
+              TAROT ESPECULATIVO
+            </span>
+          </div>
+        </div>
+      </div>
+    );
+  }
 
   return (
     <div

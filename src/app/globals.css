@@ -1,0 +1,102 @@
+@import "tailwindcss";
+
+:root {
+  --paper: #F4F3F7;        /* fundo base, branco com leve véu violeta */
+  --paper-raised: #FFFFFF; /* cards, modais, inputs */
+  --ink: #211F2E;          /* texto principal / headings */
+  --ink-muted: #605D71;    /* texto secundário */
+  --line: #E4E1EC;         /* bordas hairline, 1px, substitui bordas translúcidas escuras */
+  --accent: #3D2E7C;       /* ações primárias, foco, estado ativo */
+  --accent-soft: #EFEBFA;  /* fundo suave de destaque / hover / pill ativo */
+  --card-glow: rgba(61, 46, 124, 0.18);
+}
+
+@theme {
+  --color-paper: var(--paper);
+  --color-paper-raised: var(--paper-raised);
+  --color-ink: var(--ink);
+  --color-ink-muted: var(--ink-muted);
+  --color-line: var(--line);
+  --color-accent: var(--accent);
+  --color-accent-soft: var(--accent-soft);
+  --font-serif: var(--font-cinzel), Georgia, serif;
+  --font-sans: var(--font-inter), -apple-system, BlinkMacSystemFont, "Segoe UI", Roboto, sans-serif;
+}
+
+@layer base {
+  html {
+    scroll-behavior: smooth;
+    font-family: var(--font-sans);
+  }
+
+  body {
+    background-color: var(--paper);
+    color: var(--ink);
+  }
+}
+
+/* Custom Typography Helper - reserved strictly for brand name and anchor H2 titles */
+.font-display {
+  font-family: var(--font-cinzel), Georgia, serif;
+}
+
+/* 3D Card Engine (Intact) */
+.card-perspective {
+  perspective: 1400px;
+}
+
+.card-preserve-3d {
+  transform-style: preserve-3d;
+  transition: transform 0.8s cubic-bezier(0.34, 1.56, 0.64, 1), box-shadow 0.4s ease, border-color 0.3s ease;
+}
+
+.card-backface-hidden {
+  backface-visibility: hidden;
+  -webkit-backface-visibility: hidden;
+}
+
+.card-rotate-y-180 {
+  transform: rotateY(180deg);
+}
+
+/* Physical Card Elevation & Shadows (Neutral light mode) */
+.card-elevation {
+  box-shadow: 0 1px 3px rgba(17, 17, 17, 0.05), 0 1px 2px rgba(17, 17, 17, 0.03);
+}
+
+.card-elevation:hover {
+  box-shadow: 0 10px 24px -4px rgba(17, 17, 17, 0.08), 0 4px 8px -2px rgba(17, 17, 17, 0.04);
+}
+
+/* The ONLY colored glow in the entire app: when the card is revealed */
+.card-revealed-shadow {
+  box-shadow: 0 16px 36px -6px var(--card-glow, rgba(61, 46, 124, 0.18)), 0 1px 2px rgba(17, 17, 17, 0.04);
+}
+
+/* Standard Neutral Shadow */
+.shadow-clean {
+  box-shadow: 0 1px 2px rgba(17, 17, 17, 0.04), 0 1px 1px rgba(17, 17, 17, 0.03);
+}
+
+/* Print Styles for Final Reflection */
+@media print {
+  body {
+    background: #ffffff !important;
+    color: #211f2e !important;
+  }
+
+  .no-print {
+    display: none !important;
+  }
+
+  .print-only {
+    display: block !important;
+  }
+
+  .print-clean {
+    border: 1px solid #e4e1ec !important;
+    box-shadow: none !important;
+    background: #ffffff !important;
+    color: #211f2e !important;
+  }
+}

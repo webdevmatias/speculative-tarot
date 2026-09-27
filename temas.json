@@ -1,0 +1,252 @@
+[
+    {
+        "id": 1,
+        "titulo": "Edição genética humana",
+        "descricao": "O que acontece quando podemos escolher características dos filhos?"
+    },
+    {
+        "id": 2,
+        "titulo": "Bebês geneticamente personalizados",
+        "descricao": "Quem terá acesso à melhoria genética?"
+    },
+    {
+        "id": 3,
+        "titulo": "Extensão radical da vida",
+        "descricao": "Como seria uma sociedade onde pessoas vivem 150 anos ou mais?"
+    },
+    {
+        "id": 4,
+        "titulo": "Memória artificial",
+        "descricao": "E se pudéssemos armazenar e recuperar todas as nossas memórias?"
+    },
+    {
+        "id": 5,
+        "titulo": "Apagar memórias traumáticas",
+        "descricao": "O que acontece quando podemos escolher o que esquecer?"
+    },
+    {
+        "id": 6,
+        "titulo": "Implantes neurais",
+        "descricao": "E se computadores fossem conectados diretamente ao cérebro?"
+    },
+    {
+        "id": 7,
+        "titulo": "Telepatia tecnológica",
+        "descricao": "E se pensamentos pudessem ser enviados para outras pessoas?"
+    },
+    {
+        "id": 8,
+        "titulo": "IA como companhia emocional",
+        "descricao": "E se pessoas preferissem relacionamentos com inteligências artificiais?"
+    },
+    {
+        "id": 9,
+        "titulo": "IA com memória permanente",
+        "descricao": "O que muda quando uma IA lembra tudo sobre você?"
+    },
+    {
+        "id": 10,
+        "titulo": "Clonagem humana",
+        "descricao": "Como a sociedade trataria pessoas geneticamente idênticas?"
+    },
+    {
+        "id": 11,
+        "titulo": "Órgãos artificiais",
+        "descricao": "E se qualquer órgão pudesse ser substituído?"
+    },
+    {
+        "id": 12,
+        "titulo": "Próteses superiores ao corpo humano",
+        "descricao": "O que significa ser humano quando máquinas são melhores que partes do corpo?"
+    },
+    {
+        "id": 13,
+        "titulo": "Realidade virtual permanente",
+        "descricao": "E se viver virtualmente fosse mais confortável que o mundo real?"
+    },
+    {
+        "id": 14,
+        "titulo": "Metaverso como segunda sociedade",
+        "descricao": "Quais regras deveriam existir em uma sociedade virtual?"
+    },
+    {
+        "id": 15,
+        "titulo": "Identidade digital única",
+        "descricao": "E se toda pessoa tivesse uma identidade digital obrigatória?"
+    },
+    {
+        "id": 16,
+        "titulo": "Reputação digital permanente",
+        "descricao": "E se tudo que você fez online acompanhasse você para sempre?"
+    },
+    {
+        "id": 17,
+        "titulo": "Pontuação social",
+        "descricao": "E se empresas e governos avaliassem cada cidadão por uma pontuação?"
+    },
+    {
+        "id": 18,
+        "titulo": "Fim da privacidade",
+        "descricao": "Como seria viver sabendo que tudo é monitorado?"
+    },
+    {
+        "id": 19,
+        "titulo": "Cidades totalmente monitoradas",
+        "descricao": "Como equilibrar segurança e vigilância constante?"
+    },
+    {
+        "id": 20,
+        "titulo": "Policiamento preditivo",
+        "descricao": "E se fosse possível prever crimes antes que acontecessem?"
+    },
+    {
+        "id": 21,
+        "titulo": "Trabalho totalmente automatizado",
+        "descricao": "O que as pessoas fariam se máquinas realizassem a maioria dos trabalhos?"
+    },
+    {
+        "id": 22,
+        "titulo": "Renda básica universal automatizada",
+        "descricao": "Como seria uma sociedade sem necessidade de trabalhar para sobreviver?"
+    },
+    {
+        "id": 23,
+        "titulo": "Fim da escola tradicional",
+        "descricao": "O que aconteceria se uma IA personalizada substituísse o modelo tradicional de ensino?"
+    },
+    {
+        "id": 24,
+        "titulo": "Educação por implantes",
+        "descricao": "E se fosse possível instalar conhecimentos diretamente no cérebro?"
+    },
+    {
+        "id": 25,
+        "titulo": "Diplomas baseados em IA",
+        "descricao": "E se uma IA acompanhasse e certificasse cada habilidade adquirida?"
+    },
+    {
+        "id": 26,
+        "titulo": "Casas inteligentes autônomas",
+        "descricao": "E se a própria casa tomasse decisões pelos moradores?"
+    },
+    {
+        "id": 27,
+        "titulo": "Cidades inteligentes",
+        "descricao": "Até onde uma cidade deveria decidir pelo cidadão?"
+    },
+    {
+        "id": 28,
+        "titulo": "Carros autônomos universais",
+        "descricao": "O que aconteceria quando ninguém mais precisasse dirigir?"
+    },
+    {
+        "id": 29,
+        "titulo": "Drones entregadores",
+        "descricao": "Como as cidades mudariam quando o céu fosse usado para entregas?"
+    },
+    {
+        "id": 30,
+        "titulo": "Robôs cuidadores de idosos",
+        "descricao": "Uma máquina poderia substituir o cuidado humano?"
+    },
+    {
+        "id": 31,
+        "titulo": "Robôs domésticos",
+        "descricao": "O que aconteceria quando tarefas domésticas fossem totalmente automatizadas?"
+    },
+    {
+        "id": 32,
+        "titulo": "Alimentação produzida em laboratório",
+        "descricao": "E se carne e outros alimentos fossem produzidos sem animais?"
+    },
+    {
+        "id": 33,
+        "titulo": "Agricultura totalmente automatizada",
+        "descricao": "Quem controlaria a produção de alimentos?"
+    },
+    {
+        "id": 34,
+        "titulo": "Escassez de água",
+        "descricao": "Como seria viver em uma sociedade onde a água é extremamente controlada?"
+    },
+    {
+        "id": 35,
+        "titulo": "Mudanças climáticas extremas",
+        "descricao": "Como as cidades se adaptariam a condições climáticas severas?"
+    },
+    {
+        "id": 36,
+        "titulo": "Cidades subterrâneas",
+        "descricao": "E se a superfície da Terra se tornasse difícil de habitar?"
+    },
+    {
+        "id": 37,
+        "titulo": "Migração climática",
+        "descricao": "Como países lidariam com milhões de pessoas deslocadas pelo clima?"
+    },
+    {
+        "id": 38,
+        "titulo": "Natureza artificial",
+        "descricao": "E se árvores, animais e ecossistemas pudessem ser projetados?"
+    },
+    {
+        "id": 39,
+        "titulo": "Animais geneticamente modificados",
+        "descricao": "Até onde deveríamos modificar outras espécies?"
+    },
+    {
+        "id": 40,
+        "titulo": "Ressurreição de espécies extintas",
+        "descricao": "O que aconteceria se pudéssemos trazer espécies extintas de volta?"
+    },
+    {
+        "id": 41,
+        "titulo": "Turismo espacial",
+        "descricao": "O espaço se tornaria acessível apenas aos mais ricos?"
+    },
+    {
+        "id": 42,
+        "titulo": "Colonização de Marte",
+        "descricao": "Como seria construir uma nova sociedade fora da Terra?"
+    },
+    {
+        "id": 43,
+        "titulo": "Mineração de asteroides",
+        "descricao": "Quem teria direito aos recursos encontrados no espaço?"
+    },
+    {
+        "id": 44,
+        "titulo": "Internet após a morte",
+        "descricao": "O que acontece com nossa identidade digital quando morremos?"
+    },
+    {
+        "id": 45,
+        "titulo": "Avatares de pessoas falecidas",
+        "descricao": "É possível recriar digitalmente alguém que morreu?"
+    },
+    {
+        "id": 46,
+        "titulo": "Previsão do futuro por IA",
+        "descricao": "Como as pessoas agiriam se soubessem possíveis eventos futuros?"
+    },
+    {
+        "id": 47,
+        "titulo": "Manipulação artificial de emoções",
+        "descricao": "E se fosse possível controlar tristeza, medo ou felicidade?"
+    },
+    {
+        "id": 48,
+        "titulo": "Economia sem dinheiro físico",
+        "descricao": "O que muda quando todo dinheiro é completamente digital?"
+    },
+    {
+        "id": 49,
+        "titulo": "Influenciadores virtuais",
+        "descricao": "E se celebridades fossem inteiramente criadas por IA?"
+    },
+    {
+        "id": 50,
+        "titulo": "Humanos aumentados",
+        "descricao": "Onde termina o ser humano e começa a tecnologia?"
+    }
+]

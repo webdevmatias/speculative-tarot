@@ -1,0 +1,105 @@
+[
+  {
+    "titulo": "O Traidor",
+    "perguntas": [
+      "O que poderia fazer as pessoas perderem a confiança em seu produto?",
+      "O que poderia fazer as pessoas se sentirem inseguras ou expostas?",
+      "Quais mecanismos estão disponíveis para ouvir seus usuários?",
+      "Como você reconhecerá padrões maiores no feedback para que ações possam ser tomadas?"
+    ]
+  },
+  {
+    "titulo": "O Catalisador",
+    "perguntas": [
+      "Como os hábitos culturais podem mudar a forma como seu produto é usado? E como seu produto pode mudar os hábitos culturais?",
+      "De que contexto um alienígena do espaço sideral precisaria para usar ou compreender seu produto?",
+      "Quais normas sociais, etiquetas ou tradições poderiam mudar por causa do seu produto?"
+    ]
+  },
+  {
+    "titulo": "O Cão de Serviço",
+    "perguntas": [
+      "Se seu produto fosse inteiramente dedicado a empoderar a vida de uma população negligenciada, que tipo de impacto você poderia causar?",
+      "Quem poderia se beneficiar mais diretamente do seu produto além dos seus usuários-alvo?",
+      "Como seu produto mudaria para melhor atendê-los?"
+    ]
+  },
+  {
+    "titulo": "O Esquecido",
+    "perguntas": [
+      "Quando você imagina sua base de usuários, quem está excluído? Se eles usassem seu produto, como seria a experiência deles?",
+      "De quem está faltando a perspectiva no desenvolvimento do produto?",
+      "Finja que o oposto das suas suposições sobre seu usuário principal é verdadeiro — como isso mudaria seu produto?"
+    ]
+  },
+  {
+    "titulo": "O Lobo Mau",
+    "perguntas": [
+      "O que um \"agente mal-intencionado\" poderia fazer com seu produto?",
+      "Como seria um comportamento predatório e explorador com seu produto?",
+      "Quais funcionalidades do produto são mais vulneráveis à manipulação?",
+      "Quem poderia ser alvo do seu produto?"
+    ]
+  },
+  {
+    "titulo": "A Sereia",
+    "perguntas": [
+      "Como seria usar seu produto \"demais\"?",
+      "Como seu produto incentiva os usuários a se envolverem e como ele facilita a desconexão?",
+      "Como seu produto respeita os limites das pessoas e as outras partes de suas vidas?",
+      "Em quais situações poderia ser inadequado ou distrativo usar seu produto?"
+    ]
+  },
+  {
+    "titulo": "O Superfã",
+    "perguntas": [
+      "Como uma comunidade formada pelos seus usuários mais apaixonados se comportaria?",
+      "Em quais \"regras de engajamento\" seu produto se baseia e como elas poderiam ser subvertidas?",
+      "De que maneiras a comunidade poderia ser um recurso? De que maneiras ela poderia se tornar uma responsabilidade?",
+      "Se seu produto envolve discurso, como seria uma comunicação positiva e negativa?"
+    ]
+  },
+  {
+    "titulo": "Os Melhores Amigos",
+    "perguntas": [
+      "Se dois amigos usarem seu produto, como ele poderia fortalecer ou prejudicar o relacionamento deles?",
+      "Como seu produto muda ou cria novas formas de interação entre as pessoas?",
+      "Seu produto preenche ou muda uma função que antes era desempenhada por uma pessoa?"
+    ]
+  },
+  {
+    "titulo": "O Escândalo",
+    "perguntas": [
+      "Qual é a pior manchete sobre seu produto que você consegue imaginar?",
+      "O que, no seu modelo de negócio, mais preocuparia os usuários?",
+      "Em quais cenários seu produto poderia causar danos ou colocar pessoas em perigo?",
+      "Se seu produto fosse usado de uma maneira totalmente oposta à pretendida, como isso seria?"
+    ]
+  },
+  {
+    "titulo": "O Grande Sucesso",
+    "perguntas": [
+      "O que acontece quando 100 milhões de pessoas usam seu produto?",
+      "O que o uso do seu produto em grande escala revelaria ou causaria?",
+      "Como uma comunidade poderia mudar se 80% dos moradores usassem seu produto?",
+      "Como os hábitos e as normas poderiam mudar?"
+    ]
+  },
+  {
+    "titulo": "A Estrela do Rádio",
+    "perguntas": [
+      "Quem ou o que desaparece se seu produto for bem-sucedido?",
+      "Quem perde o emprego?",
+      "Quais outros produtos ou serviços são substituídos?",
+      "Quais indústrias, instituições ou políticas seriam afetadas?"
+    ]
+  },
+  {
+    "titulo": "A Mãe Natureza",
+    "perguntas": [
+      "Se o meio ambiente fosse seu cliente, como seu produto mudaria?",
+      "Que feedback o meio ambiente daria sobre seu produto?",
+      "Qual é o comportamento mais insustentável que seu produto incentiva?"
+    ]
+  }
+]

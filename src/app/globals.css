@@ -100,3 +100,25 @@
     color: #211f2e !important;
   }
 }
+
+/* Card Carousel Marquee Animation */
+@keyframes card-marquee {
+  0% {
+    transform: translateX(0%);
+  }
+  100% {
+    transform: translateX(-50%);
+  }
+}
+
+.animate-card-marquee {
+  display: flex;
+  width: max-content;
+  animation: card-marquee 38s linear infinite;
+  will-change: transform;
+}
+
+.animate-card-marquee:hover {
+  animation-play-state: paused;
+}
+

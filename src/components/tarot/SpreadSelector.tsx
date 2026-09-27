@@ -107,15 +107,21 @@ export function SpreadSelector({
                     {Array.from({ length: opcao.tipo }).map((_, i) => (
                       <div
                         key={i}
-                        className={`h-12 w-8 rounded-lg border transition-all ${
+                        className={`relative h-13 w-8.5 overflow-hidden rounded-md border transition-all shadow-sm ${
                           isSelected
-                            ? "border-accent bg-accent/20 shadow-clean"
-                            : "border-line bg-paper group-hover:border-accent/30"
+                            ? "border-accent ring-1 ring-accent"
+                            : "border-line group-hover:border-accent/30"
                         }`}
                         style={{
                           transform: `rotate(${(i - (opcao.tipo - 1) / 2) * 6}deg)`,
                         }}
-                      />
+                      >
+                        <img
+                          src="/assets/cartas/verso.png"
+                          alt="Verso"
+                          className="h-full w-full object-cover select-none"
+                        />
+                      </div>
                     ))}
                   </div>
 

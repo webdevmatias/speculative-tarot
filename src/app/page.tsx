@@ -12,7 +12,7 @@ import { QuestionTrail } from "@/components/tarot/QuestionTrail";
 import { ReadingNavigation } from "@/components/tarot/ReadingNavigation";
 import { ReadingSummary } from "@/components/tarot/ReadingSummary";
 import { ConfirmationModal } from "@/components/tarot/ConfirmationModal";
-import { sortearCartas } from "@/lib/data";
+import { sortearCartas, TODAS_AS_CARTAS } from "@/lib/data";
 import {
   carregarSessao,
   salvarSessao,
@@ -71,7 +71,15 @@ export default function TarotEspeculativoApp() {
     if (!sessaoSalva) return;
     setTema(sessaoSalva.tema);
     setTipoTirada(sessaoSalva.tipoTirada);
-    setCartas(sessaoSalva.cartas);
+    const cartasComImagens = sessaoSalva.cartas.map((c) => {
+      const def = TODAS_AS_CARTAS.find((d) => d.id === c.cartaId || d.titulo === c.titulo);
+      return {
+        ...c,
+        imagemFrente: c.imagemFrente || def?.imagemFrente,
+        imagemVerso: c.imagemVerso || def?.imagemVerso || "/assets/cartas/verso.png",
+      };
+    });
+    setCartas(cartasComImagens);
     setCartaAtivaIndex(sessaoSalva.cartaAtualIndex || 0);
     setEtapa(sessaoSalva.etapa || "mesa");
   };
@@ -125,6 +133,8 @@ export default function TarotEspeculativoApp() {
       corGradiente: def.corGradiente,
       corGlow: def.corGlow,
       iconeNome: def.iconeNome,
+      imagemFrente: def.imagemFrente,
+      imagemVerso: def.imagemVerso,
       virada: false, // Initially face down!
       perguntas: def.perguntas.map((p) => ({
         pergunta: p,

@@ -3,12 +3,23 @@
 import React, { useState } from "react";
 import { Sparkles, ArrowRight, RotateCcw, X } from "lucide-react";
 import { SessaoTarot } from "@/types/tarot";
+import { TODAS_AS_CARTAS } from "@/lib/data";
 
 interface HomeScreenProps {
   sessaoSalva: SessaoTarot | null;
   onIniciarNovaTirada: () => void;
   onContinuarSessao: () => void;
 }
+
+// Assemble all cards and card back for the visual showcase
+const CARTAS_CARROSSEL = [
+  { id: "verso-1", titulo: "Tarô Especulativo", imagem: "/assets/cartas/verso.png" },
+  ...TODAS_AS_CARTAS.map((c) => ({
+    id: `carta-${c.id}`,
+    titulo: c.titulo,
+    imagem: c.imagemFrente || "/assets/cartas/verso.png",
+  })),
+];
 
 export function HomeScreen({
   sessaoSalva,
@@ -41,29 +52,62 @@ export function HomeScreen({
   };
 
   return (
-    <div className="mx-auto max-w-5xl px-4 py-16 sm:px-6 sm:py-24">
-      {/* Hero Section */}
-      <div className="text-center max-w-3xl mx-auto mt-16">
+    <div className="mx-auto max-w-6xl px-4 pt-4 pb-12 sm:pt-6 sm:pb-16 overflow-hidden">
+      {/* ============================================================== */}
+      {/* INCLINED CARDS SHOWCASE CAROUSEL (ABOVE THE TITLE)             */}
+      {/* ============================================================== */}
+      <div className="relative -mx-4 sm:-mx-8 mb-6 sm:mb-8 overflow-hidden py-3">
+        {/* Subtle Edge Fade Gradients */}
+        <div className="pointer-events-none absolute left-0 inset-y-0 w-12 sm:w-28 bg-gradient-to-r from-paper via-paper/90 to-transparent z-10" />
+        <div className="pointer-events-none absolute right-0 inset-y-0 w-12 sm:w-28 bg-gradient-to-l from-paper via-paper/90 to-transparent z-10" />
+
+        {/* Slanted / Inclined Track */}
+        <div className="transform -rotate-2 sm:-rotate-3 origin-center scale-[1.02] py-3 select-none">
+          <div className="animate-card-marquee gap-3.5 sm:gap-5 items-center">
+            {[...CARTAS_CARROSSEL, ...CARTAS_CARROSSEL].map((item, idx) => (
+              <div
+                key={`${item.id}-${idx}`}
+                className="group relative w-28 sm:w-36 md:w-44 aspect-[2/3] shrink-0 rounded-2xl overflow-hidden border border-line bg-paper-raised shadow-clean transition-all duration-300 hover:-translate-y-2.5 hover:shadow-xl hover:border-accent/40 cursor-pointer"
+              >
+                <img
+                  src={item.imagem}
+                  alt={item.titulo}
+                  className="h-full w-full object-cover select-none"
+                  loading="lazy"
+                />
+                <div className="absolute inset-0 bg-ink/15 opacity-0 group-hover:opacity-100 transition-opacity flex items-end justify-center pb-2">
+                  <span className="font-mono text-[10px] sm:text-xs font-semibold px-2 py-0.5 rounded-md bg-paper/95 text-accent shadow-sm border border-line backdrop-blur-sm">
+                    {item.titulo}
+                  </span>
+                </div>
+              </div>
+            ))}
+          </div>
+        </div>
+      </div>
+
+      {/* Hero Section (Focused & Compact) */}
+      <div className="text-center max-w-2xl mx-auto">
         {/* Main Title */}
-        <h1 className="font-display text-4xl sm:text-6xl font-bold tracking-tight text-ink">
+        <h1 className="font-display text-2xl sm:text-4xl md:text-5xl font-bold tracking-tight text-ink">
           Tarot Especulativo
         </h1>
 
         {/* Second descriptive line */}
-        <p className="mt-3 text-sm sm:text-base font-medium text-accent">
+        <p className="mt-2 text-xs sm:text-sm font-semibold uppercase tracking-wider text-accent">
           Ferramenta de Design Especulativo & Pensamento de Futuros
         </p>
 
         {/* Subtitle / Description */}
-        <p className="mt-4 text-base sm:text-lg text-ink-muted leading-relaxed max-w-2xl mx-auto">
-          Uma ferramenta para desarmar certezas, investigar riscos sistêmicos, antecipar impactos éticos e explorar futuros possíveis através de tiradas de cartas provocativas.
+        <p className="mt-3 text-xs sm:text-sm text-ink-muted leading-relaxed max-w-lg mx-auto">
+          Uma ferramenta para desarmar certezas, investigar riscos sistêmicos e explorar futuros possíveis através de tiradas provocativas.
         </p>
 
         {/* Primary Action Buttons */}
-        <div className="mt-8 flex flex-col sm:flex-row items-center justify-center gap-4">
+        <div className="mt-6 flex flex-col sm:flex-row items-center justify-center gap-3">
           <button
             onClick={() => setModalGuiaAberto(true)}
-            className="w-full sm:w-auto inline-flex items-center justify-center gap-2 rounded-lg bg-accent px-8 py-3.5 text-sm sm:text-base font-semibold text-white shadow-clean transition-colors hover:bg-accent/90 focus-visible:outline-2 focus-visible:outline-accent"
+            className="w-full sm:w-auto inline-flex items-center justify-center gap-2 rounded-lg bg-accent px-6 py-2.5 sm:px-7 sm:py-3 text-xs sm:text-sm font-semibold text-white shadow-clean transition-colors hover:bg-accent/90 focus-visible:outline-2 focus-visible:outline-accent"
           >
             <Sparkles className="h-4 w-4" />
             <span>Iniciar Nova Tirada</span>
@@ -73,7 +117,7 @@ export function HomeScreen({
           {temSessaoValida && (
             <button
               onClick={onContinuarSessao}
-              className="w-full sm:w-auto inline-flex items-center justify-center gap-2 rounded-lg border border-line bg-paper-raised px-6 py-3.5 text-sm sm:text-base font-medium text-ink shadow-clean transition-colors hover:bg-accent-soft hover:text-accent focus-visible:outline-2 focus-visible:outline-accent"
+              className="w-full sm:w-auto inline-flex items-center justify-center gap-2 rounded-lg border border-line bg-paper-raised px-5 py-2.5 sm:px-6 sm:py-3 text-xs sm:text-sm font-medium text-ink shadow-clean transition-colors hover:bg-accent-soft hover:text-accent focus-visible:outline-2 focus-visible:outline-accent"
             >
               <RotateCcw className="h-4 w-4 text-accent" />
               <span>Continuar Sessão em Andamento</span>
@@ -83,7 +127,7 @@ export function HomeScreen({
 
         {/* Saved Session Card Preview */}
         {temSessaoValida && (
-          <div className="mt-8 mx-auto max-w-lg rounded-2xl border border-line bg-paper-raised p-6 text-left shadow-clean">
+          <div className="mt-6 mx-auto max-w-md rounded-2xl border border-line bg-paper-raised p-5 text-left shadow-clean">
             <div className="flex items-center justify-between">
               <span className="text-xs font-semibold text-accent uppercase tracking-wider">
                 Sessão em Andamento
@@ -92,10 +136,10 @@ export function HomeScreen({
                 {totalRespondidas} de {totalPerguntas} reflexões
               </span>
             </div>
-            <p className="mt-2 text-sm font-semibold text-ink line-clamp-1">
+            <p className="mt-1.5 text-sm font-semibold text-ink line-clamp-1">
               &ldquo;{sessaoSalva.tema}&rdquo;
             </p>
-            <div className="mt-4 flex items-center justify-between border-t border-line pt-3">
+            <div className="mt-3 flex items-center justify-between border-t border-line pt-2.5">
               <span className="text-xs text-ink-muted">
                 Tirada de {sessaoSalva.tipoTirada} {sessaoSalva.tipoTirada === 1 ? "carta" : "cartas"}
               </span>

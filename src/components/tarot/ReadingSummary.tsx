@@ -229,19 +229,32 @@ Com base estritamente nas respostas e tensões levantadas pelo usuário acima:
               className="pt-8 first:pt-0 space-y-6"
             >
               {/* Card Header */}
-              <div className="flex flex-col sm:flex-row sm:items-baseline justify-between gap-1 border-b border-line pb-3">
-                <div className="flex flex-wrap items-baseline gap-2">
-                  <span className="font-mono text-sm font-bold text-accent">
-                    {carta.numeroRomano}
-                  </span>
-                  <h2 className="text-lg sm:text-xl font-bold text-ink">
-                    {carta.titulo}
-                  </h2>
-                  {carta.subtitulo && (
-                    <span className="text-xs text-ink-muted italic">
-                      — {carta.subtitulo}
-                    </span>
+              <div className="flex flex-col sm:flex-row sm:items-center justify-between gap-3 border-b border-line pb-3.5">
+                <div className="flex items-center gap-3">
+                  {carta.imagemFrente && (
+                    <div className="relative h-16 w-11 shrink-0 overflow-hidden rounded-lg border border-line bg-paper-raised shadow-clean">
+                      <img
+                        src={carta.imagemFrente}
+                        alt={carta.titulo}
+                        className="h-full w-full object-cover select-none"
+                      />
+                    </div>
                   )}
+                  <div>
+                    <div className="flex flex-wrap items-baseline gap-2">
+                      <span className="font-mono text-sm font-bold text-accent">
+                        {carta.numeroRomano}
+                      </span>
+                      <h2 className="text-lg sm:text-xl font-bold text-ink">
+                        {carta.titulo}
+                      </h2>
+                    </div>
+                    {carta.subtitulo && (
+                      <p className="text-xs text-ink-muted italic mt-0.5">
+                        {carta.subtitulo}
+                      </p>
+                    )}
+                  </div>
                 </div>
 
                 <span className="font-mono text-xs text-ink-muted">

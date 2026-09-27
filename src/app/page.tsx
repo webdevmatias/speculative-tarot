@@ -226,7 +226,10 @@ export default function TarotEspeculativoApp() {
   const cartaAtiva = cartas[cartaAtivaIndex];
 
   return (
-    <div className="flex min-h-screen flex-col bg-paper text-ink selection:bg-accent-soft selection:text-accent">
+    <div
+      className="flex min-h-screen flex-col bg-paper text-ink selection:bg-accent-soft selection:text-accent"
+      suppressHydrationWarning
+    >
       {/* Navigation Header */}
       <Navbar
         etapa={etapa}

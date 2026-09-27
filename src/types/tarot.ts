@@ -25,6 +25,8 @@ export interface CartaDef {
   corGradiente: string;
   corGlow: string;
   iconeNome: string;
+  imagemFrente?: string;
+  imagemVerso?: string;
   perguntas: string[];
 }
 
@@ -39,6 +41,8 @@ export interface CartaSessao {
   corGradiente: string;
   corGlow: string;
   iconeNome: string;
+  imagemFrente?: string;
+  imagemVerso?: string;
   virada: boolean;
   perguntas: PerguntaResposta[];
 }

@@ -114,6 +114,21 @@ const METADATA_CARTAS: Record<string, {
   },
 };
 
+const SLUGS_CARTAS: Record<string, string> = {
+  "O Traidor": "o-traidor",
+  "O Catalisador": "o-catalisador",
+  "O Cão de Serviço": "o-cao-de-servico",
+  "O Esquecido": "o-esquecido",
+  "O Lobo Mau": "o-lobo-mau",
+  "A Sereia": "a-sereia",
+  "O Superfã": "o-superfa",
+  "Os Melhores Amigos": "os-melhores-amigos",
+  "O Escândalo": "o-escandalo",
+  "O Grande Sucesso": "o-grande-sucesso",
+  "A Estrela do Rádio": "a-estrela-do-radio",
+  "A Mãe Natureza": "a-mae-natureza",
+};
+
 // Guarantee the original questions from cartas.json are preserved strictly
 export const TODAS_AS_CARTAS: CartaDef[] = cartasJson.map((carta, index) => {
   const meta = METADATA_CARTAS[carta.titulo] || {
@@ -125,6 +140,8 @@ export const TODAS_AS_CARTAS: CartaDef[] = cartasJson.map((carta, index) => {
     iconeNome: "Sparkles",
   };
 
+  const slug = SLUGS_CARTAS[carta.titulo];
+
   return {
     id: index + 1,
     titulo: carta.titulo,
@@ -135,6 +152,8 @@ export const TODAS_AS_CARTAS: CartaDef[] = cartasJson.map((carta, index) => {
     corGradiente: meta.corGradiente,
     corGlow: meta.corGlow,
     iconeNome: meta.iconeNome,
+    imagemFrente: slug ? `/assets/cartas/${slug}.png` : undefined,
+    imagemVerso: "/assets/cartas/verso.png",
     perguntas: [...carta.perguntas], // Strictly from cartas.json
   };
 });

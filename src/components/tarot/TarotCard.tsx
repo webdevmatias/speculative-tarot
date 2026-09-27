@@ -1,6 +1,6 @@
 "use client";
 
-import React from "react";
+import React, { useState } from "react";
 import {
   ShieldAlert,
   Zap,
@@ -60,6 +60,8 @@ export function TarotCard({
   modo = "mesa",
 }: TarotCardProps) {
   const Icone = ICONES_ARQUETIPOS[carta.iconeNome] || Sparkles;
+  const [frenteError, setFrenteError] = useState(false);
+  const [versoError, setVersoError] = useState(false);
 
   // Check if all questions for this card have been answered
   const totalPerguntas = carta.perguntas.length;
@@ -87,25 +89,43 @@ export function TarotCard({
           }`}
         >
           {virada ? (
-            <div className="flex h-full flex-col items-center justify-between p-1.5">
-              <span className="font-mono text-[10px] font-bold text-accent">
-                {carta.numeroRomano}
-              </span>
-              <Icone className="h-4 w-4 text-accent" />
-              <span className="font-mono text-[9px] font-medium text-ink-muted">
-                {respondidas}/{totalPerguntas}
-              </span>
-            </div>
-          ) : (
-            <div className="flex h-full items-center justify-center p-1">
-              <div className="h-10 w-8 rounded-lg border border-line bg-paper-raised flex items-center justify-center">
-                <Eye className="h-3 w-3 text-ink-muted" />
+            carta.imagemFrente && !frenteError ? (
+              <img
+                src={carta.imagemFrente}
+                alt={carta.titulo}
+                className="h-full w-full object-cover"
+                onError={() => setFrenteError(true)}
+              />
+            ) : (
+              <div className="flex h-full flex-col items-center justify-between p-1.5">
+                <span className="font-mono text-[10px] font-bold text-accent">
+                  {carta.numeroRomano}
+                </span>
+                <Icone className="h-4 w-4 text-accent" />
+                <span className="font-mono text-[9px] font-medium text-ink-muted">
+                  {respondidas}/{totalPerguntas}
+                </span>
               </div>
-            </div>
+            )
+          ) : (
+            carta.imagemVerso && !versoError ? (
+              <img
+                src={carta.imagemVerso}
+                alt="Verso"
+                className="h-full w-full object-cover"
+                onError={() => setVersoError(true)}
+              />
+            ) : (
+              <div className="flex h-full items-center justify-center p-1">
+                <div className="h-10 w-8 rounded-lg border border-line bg-paper-raised flex items-center justify-center">
+                  <Eye className="h-3 w-3 text-ink-muted" />
+                </div>
+              </div>
+            )
           )}
 
           {todasRespondidas && virada && (
-            <div className="absolute top-0.5 right-0.5 rounded-full bg-emerald-50 text-emerald-700 border border-emerald-200 p-0.5">
+            <div className="absolute top-0.5 right-0.5 rounded-full bg-emerald-50 text-emerald-700 border border-emerald-200 p-0.5 shadow-sm">
               <CheckCircle2 className="h-3 w-3" />
             </div>
           )}
@@ -151,112 +171,146 @@ export function TarotCard({
         }`}
       >
         {/* ============================================================== */}
-        {/* VERSO DA CARTA (Face Down - Discreet Light Pattern)            */}
+        {/* VERSO DA CARTA (Face Down)                                     */}
         {/* ============================================================== */}
-        <div className="card-backface-hidden absolute inset-0 flex flex-col justify-between overflow-hidden rounded-2xl border border-line bg-paper-raised p-5 shadow-clean transition-colors">
-          {/* Subtle Inner Geometric Hairline Frame */}
-          <div className="pointer-events-none absolute inset-3 rounded-lg border border-line" />
-
-          {/* Corner Subtle Linework */}
-          <div className="absolute top-4 left-4 h-2 w-2 border-t border-l border-ink-muted/30" />
-          <div className="absolute top-4 right-4 h-2 w-2 border-t border-r border-ink-muted/30" />
-          <div className="absolute bottom-4 left-4 h-2 w-2 border-b border-l border-ink-muted/30" />
-          <div className="absolute bottom-4 right-4 h-2 w-2 border-b border-r border-ink-muted/30" />
-
-          {/* Card Top Label */}
-          <div className="relative z-10 flex items-center justify-between text-ink-muted">
-            <span className="font-mono text-[10px] tracking-wider uppercase">
-              Tarot Especulativo
-            </span>
-            <span className="font-mono text-xs font-medium">
-              0{slotIndex + 1}/0{totalCartas}
-            </span>
-          </div>
-
-          {/* Center Discreet Emblem Motif */}
-          <div className="relative z-10 my-auto flex flex-col items-center justify-center">
-            <div className="relative flex h-20 w-20 items-center justify-center rounded-full border border-line bg-paper shadow-clean">
-              <div className="flex h-10 w-10 items-center justify-center rounded-full bg-accent-soft text-accent">
-                <Eye className="h-5 w-5" />
+        <div className="card-backface-hidden absolute inset-0 flex flex-col justify-between overflow-hidden rounded-2xl border border-line bg-paper-raised shadow-clean transition-colors">
+          {carta.imagemVerso && !versoError ? (
+            <div className="relative h-full w-full overflow-hidden rounded-2xl bg-paper">
+              <img
+                src={carta.imagemVerso}
+                alt="Verso da Carta"
+                className="h-full w-full object-cover select-none"
+                onError={() => setVersoError(true)}
+              />
+              <div className="absolute inset-0 bg-ink/10 opacity-0 transition-opacity hover:opacity-100 flex items-end justify-center pb-4">
+                <div className="flex items-center gap-1.5 rounded-lg border border-line bg-paper/95 px-3 py-1 text-xs font-semibold text-accent shadow-clean backdrop-blur-sm">
+                  <Sparkles className="h-3 w-3 text-accent" />
+                  <span>Toque para Revelar</span>
+                </div>
               </div>
             </div>
+          ) : (
+            <div className="relative flex h-full flex-col justify-between p-5">
+              {/* Subtle Inner Geometric Hairline Frame */}
+              <div className="pointer-events-none absolute inset-3 rounded-lg border border-line" />
 
-            <div className="mt-4 flex items-center gap-1.5 rounded-lg border border-line bg-accent-soft px-3 py-1 text-xs font-semibold text-accent shadow-clean">
-              <Sparkles className="h-3 w-3 text-accent" />
-              <span>Toque para Revelar</span>
+              {/* Corner Subtle Linework */}
+              <div className="absolute top-4 left-4 h-2 w-2 border-t border-l border-ink-muted/30" />
+              <div className="absolute top-4 right-4 h-2 w-2 border-t border-r border-ink-muted/30" />
+              <div className="absolute bottom-4 left-4 h-2 w-2 border-b border-l border-ink-muted/30" />
+              <div className="absolute bottom-4 right-4 h-2 w-2 border-b border-r border-ink-muted/30" />
+
+              {/* Card Top Label */}
+              <div className="relative z-10 flex items-center justify-between text-ink-muted">
+                <span className="font-mono text-[10px] tracking-wider uppercase">
+                  Tarot Especulativo
+                </span>
+                <span className="font-mono text-xs font-medium">
+                  0{slotIndex + 1}/0{totalCartas}
+                </span>
+              </div>
+
+              {/* Center Discreet Emblem Motif */}
+              <div className="relative z-10 my-auto flex flex-col items-center justify-center">
+                <div className="relative flex h-20 w-20 items-center justify-center rounded-full border border-line bg-paper shadow-clean">
+                  <div className="flex h-10 w-10 items-center justify-center rounded-full bg-accent-soft text-accent">
+                    <Eye className="h-5 w-5" />
+                  </div>
+                </div>
+
+                <div className="mt-4 flex items-center gap-1.5 rounded-lg border border-line bg-accent-soft px-3 py-1 text-xs font-semibold text-accent shadow-clean">
+                  <Sparkles className="h-3 w-3 text-accent" />
+                  <span>Toque para Revelar</span>
+                </div>
+              </div>
+
+              {/* Bottom Card Label */}
+              <div className="relative z-10 text-center">
+                <span className="font-mono text-[10px] tracking-wider text-ink-muted uppercase">
+                  Arquétipo Oculto
+                </span>
+              </div>
             </div>
-          </div>
-
-          {/* Bottom Card Label */}
-          <div className="relative z-10 text-center">
-            <span className="font-mono text-[10px] tracking-wider text-ink-muted uppercase">
-              Arquétipo Oculto
-            </span>
-          </div>
+          )}
         </div>
 
         {/* ============================================================== */}
         {/* FRENTE DA CARTA (Face Up - Revealed)                           */}
         {/* STRICT RULE: Absolutely NO questions or answers inside card!  */}
         {/* ============================================================== */}
-        <div className="card-backface-hidden card-rotate-y-180 absolute inset-0 flex flex-col justify-between overflow-hidden rounded-2xl border border-line bg-paper-raised p-5 text-ink">
-          {/* Subtle Inner Hairline Border */}
-          <div className="pointer-events-none absolute inset-3 rounded-lg border border-line" />
-
-          {/* Corner Accent Details */}
-          <div className="absolute top-4 left-4 h-2 w-2 border-t border-l border-accent/40" />
-          <div className="absolute top-4 right-4 h-2 w-2 border-t border-r border-accent/40" />
-          <div className="absolute bottom-4 left-4 h-2 w-2 border-b border-l border-accent/40" />
-          <div className="absolute bottom-4 right-4 h-2 w-2 border-b border-r border-accent/40" />
-
-          {/* Card Header: Roman Numeral & Slot Indicator */}
-          <div className="relative z-10 flex items-center justify-between border-b border-line pb-2.5">
-            <span className="font-mono text-xs font-bold tracking-widest uppercase text-accent">
-              {carta.numeroRomano}
-            </span>
-            <span className="font-mono text-[11px] tracking-wider text-ink-muted">
-              CARTA {slotIndex + 1} DE {totalCartas}
-            </span>
-          </div>
-
-          {/* Card Center: Archetype Motif Emblem & Title (Inter/sans) */}
-          <div className="relative z-10 my-auto flex flex-col items-center justify-center text-center px-2">
-            {/* Icon Container */}
-            <div className="relative mb-4 flex h-20 w-20 items-center justify-center rounded-2xl border border-line bg-paper shadow-clean">
-              <Icone className="h-8 w-8 text-accent" />
+        <div className="card-backface-hidden card-rotate-y-180 absolute inset-0 flex flex-col justify-between overflow-hidden rounded-2xl border border-line bg-paper-raised text-ink">
+          {carta.imagemFrente && !frenteError ? (
+            <div className="relative h-full w-full overflow-hidden rounded-2xl bg-paper">
+              <img
+                src={carta.imagemFrente}
+                alt={carta.titulo}
+                className="h-full w-full object-cover select-none"
+                onError={() => setFrenteError(true)}
+              />
             </div>
+          ) : (
+            <div className="relative flex h-full flex-col justify-between p-5">
+              {/* Subtle Inner Hairline Border */}
+              <div className="pointer-events-none absolute inset-3 rounded-lg border border-line" />
 
-            {/* Card Title (Sans-serif font-bold, per prompt instructions) */}
-            <h3 className="text-xl sm:text-2xl font-bold tracking-tight text-ink">
-              {carta.titulo}
-            </h3>
+              {/* Corner Accent Details */}
+              <div className="absolute top-4 left-4 h-2 w-2 border-t border-l border-accent/40" />
+              <div className="absolute top-4 right-4 h-2 w-2 border-t border-r border-accent/40" />
+              <div className="absolute bottom-4 left-4 h-2 w-2 border-b border-l border-accent/40" />
+              <div className="absolute bottom-4 right-4 h-2 w-2 border-b border-r border-accent/40" />
 
-            {/* Archetype Provocation Subtitle */}
-            {carta.subtitulo && (
-              <p className="mt-2 line-clamp-2 max-w-[210px] text-xs font-medium text-ink-muted leading-relaxed">
-                {carta.subtitulo}
-              </p>
-            )}
-          </div>
+              {/* Card Header: Roman Numeral & Slot Indicator */}
+              <div className="relative z-10 flex items-center justify-between border-b border-line pb-2.5">
+                <span className="font-mono text-xs font-bold tracking-widest uppercase text-accent">
+                  {carta.numeroRomano}
+                </span>
+                <span className="font-mono text-[11px] tracking-wider text-ink-muted">
+                  CARTA {slotIndex + 1} DE {totalCartas}
+                </span>
+              </div>
 
-          {/* Card Footer: Progress Pill */}
-          <div className="relative z-10 flex items-center justify-between border-t border-line pt-2.5 text-xs">
-            <span className="font-mono text-[11px] font-medium text-ink-muted">
-              {respondidas} de {totalPerguntas} respondidas
-            </span>
-            {todasRespondidas ? (
-              <span className="flex items-center gap-1 font-semibold text-emerald-700 bg-emerald-50 border border-emerald-200 rounded-lg px-2 py-0.5 text-[11px]">
-                <CheckCircle2 className="h-3 w-3" />
-                Completa
-              </span>
-            ) : (
-              <span className="font-mono text-[10px] text-ink-muted uppercase tracking-wider">
-                Em reflexão
-              </span>
-            )}
-          </div>
+              {/* Card Center: Archetype Motif Emblem & Title (Inter/sans) */}
+              <div className="relative z-10 my-auto flex flex-col items-center justify-center text-center px-2">
+                {/* Icon Container */}
+                <div className="relative mb-4 flex h-20 w-20 items-center justify-center rounded-2xl border border-line bg-paper shadow-clean">
+                  <Icone className="h-8 w-8 text-accent" />
+                </div>
+
+                {/* Card Title (Sans-serif font-bold, per prompt instructions) */}
+                <h3 className="text-xl sm:text-2xl font-bold tracking-tight text-ink">
+                  {carta.titulo}
+                </h3>
+
+                {/* Archetype Provocation Subtitle */}
+                {carta.subtitulo && (
+                  <p className="mt-2 line-clamp-2 max-w-[210px] text-xs font-medium text-ink-muted leading-relaxed">
+                    {carta.subtitulo}
+                  </p>
+                )}
+              </div>
+
+              {/* Card Footer: Progress Pill */}
+              <div className="relative z-10 flex items-center justify-between border-t border-line pt-2.5 text-xs">
+                <span className="font-mono text-[11px] font-medium text-ink-muted">
+                  {respondidas} de {totalPerguntas} respondidas
+                </span>
+                {todasRespondidas ? (
+                  <span className="flex items-center gap-1 font-semibold text-emerald-700 bg-emerald-50 border border-emerald-200 rounded-lg px-2 py-0.5 text-[11px]">
+                    <CheckCircle2 className="h-3 w-3" />
+                    Completa
+                  </span>
+                ) : (
+                  <span className="font-mono text-[10px] text-ink-muted uppercase tracking-wider">
+                    Em reflexão
+                  </span>
+                )}
+              </div>
+            </div>
+          )}
         </div>
       </div>
     </div>
   );
 }
+
+

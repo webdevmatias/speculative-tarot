@@ -1,7 +1,7 @@
 "use client";
 
-import React from "react";
-import { Sparkles, ArrowRight, RotateCcw } from "lucide-react";
+import React, { useState } from "react";
+import { Sparkles, ArrowRight, RotateCcw, X } from "lucide-react";
 import { SessaoTarot } from "@/types/tarot";
 
 interface HomeScreenProps {
@@ -15,6 +15,8 @@ export function HomeScreen({
   onIniciarNovaTirada,
   onContinuarSessao,
 }: HomeScreenProps) {
+  const [modalGuiaAberto, setModalGuiaAberto] = useState(false);
+
   const temSessaoValida =
     sessaoSalva &&
     sessaoSalva.tema &&
@@ -26,23 +28,28 @@ export function HomeScreen({
     : 0;
   const totalRespondidas = temSessaoValida
     ? sessaoSalva.cartas.reduce(
-        (acc, c) =>
-          acc +
-          c.perguntas.filter((p) => p.resposta && p.resposta.trim().length > 0).length,
-        0
-      )
+      (acc, c) =>
+        acc +
+        c.perguntas.filter((p) => p.resposta && p.resposta.trim().length > 0).length,
+      0
+    )
     : 0;
+
+  const handleConfirmarInicio = () => {
+    setModalGuiaAberto(false);
+    onIniciarNovaTirada();
+  };
 
   return (
     <div className="mx-auto max-w-5xl px-4 py-16 sm:px-6 sm:py-24">
       {/* Hero Section */}
-      <div className="text-center max-w-3xl mx-auto">
+      <div className="text-center max-w-3xl mx-auto mt-16">
         {/* Main Title */}
         <h1 className="font-display text-4xl sm:text-6xl font-bold tracking-tight text-ink">
           Tarot Especulativo
         </h1>
 
-        {/* Second descriptive line (replaces former eyebrow badge) */}
+        {/* Second descriptive line */}
         <p className="mt-3 text-sm sm:text-base font-medium text-accent">
           Ferramenta de Design Especulativo & Pensamento de Futuros
         </p>
@@ -55,7 +62,7 @@ export function HomeScreen({
         {/* Primary Action Buttons */}
         <div className="mt-8 flex flex-col sm:flex-row items-center justify-center gap-4">
           <button
-            onClick={onIniciarNovaTirada}
+            onClick={() => setModalGuiaAberto(true)}
             className="w-full sm:w-auto inline-flex items-center justify-center gap-2 rounded-lg bg-accent px-8 py-3.5 text-sm sm:text-base font-semibold text-white shadow-clean transition-colors hover:bg-accent/90 focus-visible:outline-2 focus-visible:outline-accent"
           >
             <Sparkles className="h-4 w-4" />
@@ -104,58 +111,93 @@ export function HomeScreen({
         )}
       </div>
 
-      {/* Conceptual Guide Steps - No box borders/backgrounds, clean spacing and big numerals */}
-      <div className="mt-24 border-t border-line pt-16">
-        <div className="text-center max-w-xl mx-auto mb-12">
-          <h2 className="font-display text-2xl font-bold text-ink">
-            Como funciona a exploração especulativa?
-          </h2>
-          <p className="mt-2 text-sm text-ink-muted">
-            Em vez de predizer o futuro, o Tarot Especulativo atua como uma máquina de criar perguntas desconfortáveis sobre o presente.
-          </p>
+      {/* Modal: Conceptual Guide Steps */}
+      {modalGuiaAberto && (
+        <div className="fixed inset-0 z-50 flex items-center justify-center p-4 bg-ink/40 backdrop-blur-sm animate-in fade-in duration-200">
+          <div className="relative w-full max-w-3xl rounded-2xl border border-line bg-paper-raised p-6 sm:p-8 shadow-clean max-h-[90vh] overflow-y-auto">
+            {/* Close Button */}
+            <button
+              onClick={() => setModalGuiaAberto(false)}
+              className="absolute top-4 right-4 text-ink-muted hover:text-ink transition-colors focus-visible:outline-2 focus-visible:outline-accent rounded-lg p-1"
+              aria-label="Fechar modal"
+            >
+              <X className="h-5 w-5" />
+            </button>
+
+            {/* Modal Header */}
+            <div className="text-left max-w-xl">
+              <span className="text-xs font-semibold uppercase tracking-wider text-accent">
+                Guia Conceitual
+              </span>
+              <h2 className="mt-1 font-display text-2xl font-bold text-ink">
+                Como funciona a exploração especulativa?
+              </h2>
+              <p className="mt-2 text-sm text-ink-muted leading-relaxed">
+                Em vez de predizer o futuro, o Tarot Especulativo atua como uma máquina de criar perguntas desconfortáveis sobre o presente.
+              </p>
+            </div>
+
+            {/* Steps Grid */}
+            <div className="mt-8 grid grid-cols-1 sm:grid-cols-3 gap-6 border-t border-line pt-6">
+              {/* Step 1 */}
+              <div className="flex flex-col">
+                <span className="font-mono text-3xl font-light text-accent/60">
+                  01
+                </span>
+                <h3 className="mt-2 text-base font-semibold text-ink">
+                  Defina o Terreno
+                </h3>
+                <p className="mt-2 text-xs sm:text-sm text-ink-muted leading-relaxed">
+                  Escolha entre 50 temas predefinidos (de biotecnologia a IA) ou escreva uma premissa própria sobre produtos, tecnologias ou modelos sociais.
+                </p>
+              </div>
+
+              {/* Step 2 */}
+              <div className="flex flex-col">
+                <span className="font-mono text-3xl font-light text-accent/60">
+                  02
+                </span>
+                <h3 className="mt-2 text-base font-semibold text-ink">
+                  Revele as Cartas na Mesa
+                </h3>
+                <p className="mt-2 text-xs sm:text-sm text-ink-muted leading-relaxed">
+                  Tire 1, 3 ou 6 cartas aleatórias. Toque para virar cada carta em uma experiência 3D tátil e revelar seus arquétipos críticos.
+                </p>
+              </div>
+
+              {/* Step 3 */}
+              <div className="flex flex-col">
+                <span className="font-mono text-3xl font-light text-accent/60">
+                  03
+                </span>
+                <h3 className="mt-2 text-base font-semibold text-ink">
+                  Trilha de Perguntas & Síntese
+                </h3>
+                <p className="mt-2 text-xs sm:text-sm text-ink-muted leading-relaxed">
+                  Responda à trilha vertical de provocações de cada carta. Ao final, exporte sua reflexão estruturada em Markdown ou PDF.
+                </p>
+              </div>
+            </div>
+
+            {/* Modal Footer / Confirmation Action */}
+            <div className="mt-8 flex flex-col-reverse sm:flex-row items-center justify-end gap-3 border-t border-line pt-6">
+              <button
+                onClick={() => setModalGuiaAberto(false)}
+                className="w-full sm:w-auto rounded-lg border border-line bg-paper-raised px-4 py-2.5 text-xs sm:text-sm font-medium text-ink shadow-clean hover:bg-accent-soft hover:text-accent transition-colors focus-visible:outline-2 focus-visible:outline-accent"
+              >
+                Voltar
+              </button>
+              <button
+                onClick={handleConfirmarInicio}
+                className="w-full sm:w-auto inline-flex items-center justify-center gap-2 rounded-lg bg-accent px-6 py-2.5 text-xs sm:text-sm font-semibold text-white shadow-clean hover:bg-accent/90 transition-colors focus-visible:outline-2 focus-visible:outline-accent"
+              >
+                <span>Continuar para Escolha do Tema</span>
+                <ArrowRight className="h-4 w-4" />
+              </button>
+            </div>
+          </div>
         </div>
-
-        <div className="grid grid-cols-1 sm:grid-cols-3 gap-8">
-          {/* Step 1 */}
-          <div className="flex flex-col">
-            <span className="font-mono text-3xl font-light text-accent/60">
-              01
-            </span>
-            <h3 className="mt-2 text-base font-semibold text-ink">
-              Defina o Terreno
-            </h3>
-            <p className="mt-2 text-sm text-ink-muted leading-relaxed">
-              Escolha entre 50 temas predefinidos (de biotecnologia a IA) ou escreva uma premissa própria sobre produtos, tecnologias ou modelos sociais.
-            </p>
-          </div>
-
-          {/* Step 2 */}
-          <div className="flex flex-col">
-            <span className="font-mono text-3xl font-light text-accent/60">
-              02
-            </span>
-            <h3 className="mt-2 text-base font-semibold text-ink">
-              Revele as Cartas na Mesa
-            </h3>
-            <p className="mt-2 text-sm text-ink-muted leading-relaxed">
-              Tire 1, 3 ou 6 cartas aleatórias. Toque para virar cada carta em uma experiência 3D tátil e revelar seus arquétipos críticos.
-            </p>
-          </div>
-
-          {/* Step 3 */}
-          <div className="flex flex-col">
-            <span className="font-mono text-3xl font-light text-accent/60">
-              03
-            </span>
-            <h3 className="mt-2 text-base font-semibold text-ink">
-              Trilha de Perguntas & Síntese
-            </h3>
-            <p className="mt-2 text-sm text-ink-muted leading-relaxed">
-              Responda à trilha vertical de provocações de cada carta. Ao final, exporte sua reflexão estruturada em Markdown ou PDF.
-            </p>
-          </div>
-        </div>
-      </div>
+      )}
     </div>
   );
 }

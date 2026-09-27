@@ -90,52 +90,52 @@ Com base estritamente nas respostas e tensões levantadas pelo usuário acima:
 3. Proponha 2 intervenções conceituais ou perguntas provocativas de segundo nível para aprofundar o projeto.`;
 
   return (
-    <div className="mx-auto max-w-4xl px-4 py-8 sm:px-6">
+    <div className="mx-auto max-w-4xl px-4 py-4 sm:py-6">
       {/* ============================================================== */}
       {/* TOP ACTIONS BAR (Hidden when printing)                         */}
       {/* ============================================================== */}
-      <div className="no-print mb-8 flex flex-wrap items-center justify-between gap-4 border-b border-line pb-5">
+      <div className="no-print mb-5 flex flex-wrap items-center justify-between gap-3 border-b border-line pb-3.5">
         <button
           onClick={onVoltarRevisar}
-          className="flex items-center gap-2 rounded-lg border border-line bg-paper-raised px-4 py-2 text-xs sm:text-sm font-medium text-ink shadow-clean transition-colors hover:bg-accent-soft hover:text-accent focus-visible:outline-2 focus-visible:outline-accent"
+          className="flex items-center gap-1.5 rounded-lg border border-line bg-paper-raised px-3.5 py-1.5 text-xs font-medium text-ink shadow-clean transition-colors hover:bg-accent-soft hover:text-accent focus-visible:outline-2 focus-visible:outline-accent"
         >
-          <ArrowLeft className="h-4 w-4" />
-          <span>Voltar para Revisar / Editar</span>
+          <ArrowLeft className="h-3.5 w-3.5" />
+          <span>Voltar para Mesa</span>
         </button>
 
         <div className="flex flex-wrap items-center gap-2">
           <button
             onClick={onCopiarReflexao}
-            className="flex items-center gap-1.5 rounded-lg border border-line bg-paper-raised px-3.5 py-2 text-xs font-medium text-ink shadow-clean transition-colors hover:bg-accent-soft hover:text-accent focus-visible:outline-2 focus-visible:outline-accent"
+            className="flex items-center gap-1.5 rounded-lg border border-line bg-paper-raised px-3 py-1.5 text-xs font-medium text-ink shadow-clean transition-colors hover:bg-accent-soft hover:text-accent focus-visible:outline-2 focus-visible:outline-accent"
             title="Copiar texto formatado em Markdown"
           >
-            <Copy className="h-4 w-4 text-accent" />
-            <span>Copiar Reflexão</span>
+            <Copy className="h-3.5 w-3.5 text-accent" />
+            <span>Copiar</span>
           </button>
 
           <button
             onClick={handleBaixarMarkdown}
-            className="flex items-center gap-1.5 rounded-lg border border-line bg-paper-raised px-3.5 py-2 text-xs font-medium text-ink shadow-clean transition-colors hover:bg-accent-soft hover:text-accent focus-visible:outline-2 focus-visible:outline-accent"
+            className="flex items-center gap-1.5 rounded-lg border border-line bg-paper-raised px-3 py-1.5 text-xs font-medium text-ink shadow-clean transition-colors hover:bg-accent-soft hover:text-accent focus-visible:outline-2 focus-visible:outline-accent"
             title="Baixar arquivo Markdown (.md)"
           >
-            <Download className="h-4 w-4 text-accent" />
+            <Download className="h-3.5 w-3.5 text-accent" />
             <span>Baixar .md</span>
           </button>
 
           <button
             onClick={handleImprimir}
-            className="flex items-center gap-1.5 rounded-lg border border-line bg-paper-raised px-3.5 py-2 text-xs font-medium text-ink shadow-clean transition-colors hover:bg-accent-soft hover:text-accent focus-visible:outline-2 focus-visible:outline-accent"
+            className="flex items-center gap-1.5 rounded-lg border border-line bg-paper-raised px-3 py-1.5 text-xs font-medium text-ink shadow-clean transition-colors hover:bg-accent-soft hover:text-accent focus-visible:outline-2 focus-visible:outline-accent"
             title="Imprimir ou Salvar em PDF"
           >
-            <Printer className="h-4 w-4 text-accent" />
-            <span>Imprimir / PDF</span>
+            <Printer className="h-3.5 w-3.5 text-accent" />
+            <span>Imprimir</span>
           </button>
 
           <button
             onClick={onNovaTirada}
-            className="flex items-center gap-1.5 rounded-lg bg-accent px-4 py-2 text-xs font-semibold text-white shadow-clean transition-colors hover:bg-accent/90 focus-visible:outline-2 focus-visible:outline-accent"
+            className="flex items-center gap-1.5 rounded-lg bg-accent px-3.5 py-1.5 text-xs font-semibold text-white shadow-clean transition-colors hover:bg-accent/90 focus-visible:outline-2 focus-visible:outline-accent"
           >
-            <RotateCcw className="h-4 w-4" />
+            <RotateCcw className="h-3.5 w-3.5" />
             <span>Nova Tirada</span>
           </button>
         </div>
@@ -144,14 +144,14 @@ Com base estritamente nas respostas e tensões levantadas pelo usuário acima:
       {/* ============================================================== */}
       {/* SUMMARY MAIN DOCUMENT (Clean Light Paper & Hairline Dividers)  */}
       {/* ============================================================== */}
-      <article className="rounded-2xl border border-line bg-paper-raised p-6 sm:p-10 shadow-clean print-clean">
+      <article className="rounded-xl border border-line bg-paper-raised p-5 sm:p-7 shadow-clean print-clean">
         {/* Title & Metadata */}
-        <header className="border-b border-line pb-6 text-center sm:text-left">
-          <div className="flex flex-col sm:flex-row sm:items-center justify-between gap-2">
-            <span className="text-xs font-semibold uppercase tracking-wider text-accent">
+        <header className="border-b border-line pb-4 text-center sm:text-left">
+          <div className="flex flex-col sm:flex-row sm:items-center justify-between gap-1.5">
+            <span className="text-[11px] font-semibold uppercase tracking-wider text-accent">
               Registro de Design Especulativo
             </span>
-            <span className="text-xs text-ink-muted">
+            <span className="text-[11px] text-ink-muted">
               {new Date().toLocaleDateString("pt-BR", {
                 day: "2-digit",
                 month: "long",
@@ -160,28 +160,28 @@ Com base estritamente nas respostas e tensões levantadas pelo usuário acima:
             </span>
           </div>
 
-          <h1 className="mt-2 font-display text-2xl sm:text-4xl font-bold tracking-tight text-ink">
+          <h1 className="mt-1 font-display text-xl sm:text-2xl md:text-3xl font-bold tracking-tight text-ink">
             Sua reflexão
           </h1>
 
           {/* Theme Banner */}
-          <div className="mt-5 rounded-2xl border border-line bg-paper p-5">
-            <div className="text-[11px] font-semibold uppercase tracking-wider text-ink-muted">
+          <div className="mt-3 rounded-xl border border-line bg-paper p-3.5">
+            <div className="text-[10px] font-semibold uppercase tracking-wider text-ink-muted">
               Tema Investigado
             </div>
-            <p className="mt-1 text-lg sm:text-xl font-bold text-ink">
+            <p className="mt-0.5 text-base sm:text-lg font-bold text-ink">
               &ldquo;{sessao.tema}&rdquo;
             </p>
-            <div className="mt-2 flex flex-wrap items-center gap-3 text-xs text-ink-muted">
+            <div className="mt-1.5 flex flex-wrap items-center gap-2.5 text-xs text-ink-muted">
               <span className="flex items-center gap-1">
-                <Layers className="h-3.5 w-3.5 text-accent" />
+                <Layers className="h-3 w-3 text-accent" />
                 <span>
                   Tirada de {sessao.tipoTirada} {sessao.tipoTirada === 1 ? "carta" : "cartas"}
                 </span>
               </span>
               <span>•</span>
               <span className="flex items-center gap-1">
-                <CheckCircle2 className="h-3.5 w-3.5 text-emerald-700" />
+                <CheckCircle2 className="h-3 w-3 text-emerald-700" />
                 <span className="text-emerald-700 font-medium">
                   {totalRespondidas} de {totalPerguntas} perguntas respondidas
                 </span>
@@ -191,26 +191,26 @@ Com base estritamente nas respostas e tensões levantadas pelo usuário acima:
         </header>
 
         {/* Structural Synthesis Overview */}
-        <section aria-label="Síntese estrutural da tirada" className="mt-8 rounded-2xl border border-line bg-paper p-5">
-          <h2 className="text-xs font-bold uppercase tracking-wider text-ink-muted">
+        <section aria-label="Síntese estrutural da tirada" className="mt-5 rounded-xl border border-line bg-paper p-4">
+          <h2 className="text-[11px] font-bold uppercase tracking-wider text-ink-muted">
             Síntese Estrutural da Tirada
           </h2>
-          <div className="mt-3 grid grid-cols-1 sm:grid-cols-3 gap-4">
-            <div className="rounded-lg border border-line bg-paper-raised p-4 shadow-clean">
-              <span className="text-[11px] text-ink-muted">Ângulos Explorados</span>
-              <p className="mt-1 text-base font-bold text-ink">
+          <div className="mt-2.5 grid grid-cols-1 sm:grid-cols-3 gap-3">
+            <div className="rounded-lg border border-line bg-paper-raised p-3 shadow-clean">
+              <span className="text-[10px] text-ink-muted">Ângulos Explorados</span>
+              <p className="mt-0.5 text-sm font-bold text-ink">
                 {sessao.cartas.map((c) => c.titulo).join(" • ")}
               </p>
             </div>
-            <div className="rounded-lg border border-line bg-paper-raised p-4 shadow-clean">
-              <span className="text-[11px] text-ink-muted">Cobertura de Questões</span>
-              <p className="mt-1 text-base font-bold text-emerald-700">
+            <div className="rounded-lg border border-line bg-paper-raised p-3 shadow-clean">
+              <span className="text-[10px] text-ink-muted">Cobertura de Questões</span>
+              <p className="mt-0.5 text-sm font-bold text-emerald-700">
                 {Math.round((totalRespondidas / Math.max(1, totalPerguntas)) * 100)}% concluída
               </p>
             </div>
-            <div className="rounded-lg border border-line bg-paper-raised p-4 shadow-clean">
-              <span className="text-[11px] text-ink-muted">Escopo da Investigação</span>
-              <p className="mt-1 text-base font-bold text-accent">
+            <div className="rounded-lg border border-line bg-paper-raised p-3 shadow-clean">
+              <span className="text-[10px] text-ink-muted">Escopo da Investigação</span>
+              <p className="mt-0.5 text-sm font-bold text-accent">
                 {sessao.tipoTirada === 1
                   ? "Foco Direcionado"
                   : sessao.tipoTirada === 3
@@ -222,7 +222,7 @@ Com base estritamente nas respostas e tensões levantadas pelo usuário acima:
         </section>
 
         {/* Detailed Cards and Answers (Clean hairline dividers) */}
-        <div className="mt-10 divide-y divide-line">
+        <div className="mt-6 divide-y divide-line">
           {sessao.cartas.map((carta, cIdx) => (
             <section
               key={carta.id}

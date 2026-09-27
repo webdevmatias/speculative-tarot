@@ -35,18 +35,18 @@ export function CardTable({
       {/* ============================================================== */}
       {/* TABLE TOP BAR: THEME INFO & INSTRUCTIONS                       */}
       {/* ============================================================== */}
-      <div className="mx-auto max-w-5xl px-4 pt-6 pb-4 sm:px-6">
-        <div className="flex flex-col md:flex-row md:items-center justify-between gap-4 rounded-2xl border border-line bg-paper-raised p-6 shadow-clean">
+      <div className="mx-auto max-w-5xl px-4 pt-3 pb-2 sm:px-6">
+        <div className="flex flex-col sm:flex-row sm:items-center justify-between gap-3 rounded-xl border border-line bg-paper-raised p-3.5 sm:p-4 shadow-clean">
           <div className="flex-1">
             <div className="flex items-center gap-2">
-              <span className="rounded-lg bg-accent-soft border border-accent/20 px-2.5 py-0.5 text-xs font-semibold text-accent">
+              <span className="rounded-md bg-accent-soft border border-accent/20 px-2 py-0.5 text-[11px] font-semibold text-accent">
                 Tema de Investigação
               </span>
-              <span className="text-xs text-ink-muted">
+              <span className="text-[11px] text-ink-muted">
                 {tipoTirada} {tipoTirada === 1 ? "Carta" : "Cartas"}
               </span>
             </div>
-            <h2 className="mt-2 text-lg sm:text-xl font-bold text-ink line-clamp-2">
+            <h2 className="mt-1 text-sm sm:text-base font-bold text-ink line-clamp-1">
               &ldquo;{tema}&rdquo;
             </h2>
           </div>
@@ -57,23 +57,23 @@ export function CardTable({
               <p className="text-xs font-semibold text-ink">
                 {totalRespondidasGeral} de {totalPerguntasGeral} reflexões
               </p>
-              <p className="text-[11px] text-ink-muted">
+              <p className="text-[10px] text-ink-muted">
                 {todasViradas ? "Todas as cartas reveladas" : "Cartas na mesa"}
               </p>
             </div>
-            <div className="flex h-8 items-center justify-center rounded-lg border border-line bg-paper px-2.5 text-xs font-mono font-medium text-accent">
+            <div className="flex h-7 items-center justify-center rounded-lg border border-line bg-paper px-2 text-xs font-mono font-medium text-accent">
               {cartas.filter((c) => c.virada).length}/{cartas.length}
             </div>
           </div>
         </div>
 
         {/* Guidance tip */}
-        <div className="mt-4 flex items-center justify-center gap-2 text-center text-xs sm:text-sm text-ink-muted">
-          <Sparkles className="h-4 w-4 text-accent shrink-0" />
+        <div className="mt-2 flex items-center justify-center gap-1.5 text-center text-xs text-ink-muted">
+          <Sparkles className="h-3.5 w-3.5 text-accent shrink-0" />
           <span>
             {!cartaAtiva.virada
-              ? "Clique sobre a carta virada para levantá-la e revelar seu arquétipo."
-              : "Explore a trilha de reflexão abaixo. Você pode navegar entre as cartas a qualquer momento."}
+              ? "Clique sobre a carta virada para revelá-la."
+              : "Reflita sobre as perguntas ao lado. Navegue entre cartas e perguntas a qualquer momento."}
           </span>
         </div>
       </div>
@@ -81,8 +81,8 @@ export function CardTable({
       {/* ============================================================== */}
       {/* THE PHYSICAL TAROT TABLE (Clean Light Editorial Surface)       */}
       {/* ============================================================== */}
-      <div className="relative mx-auto mt-2 max-w-6xl px-4 sm:px-6">
-        <div className="relative rounded-2xl border border-line bg-paper-raised p-6 sm:p-10 shadow-clean">
+      <div className="relative mx-auto mt-1 max-w-5xl px-4 sm:px-6">
+        <div className="relative rounded-xl border border-line bg-paper-raised p-4 sm:p-6 shadow-clean">
           {/* Spread Layout: 1 Card, 3 Cards, or 6 Cards */}
           {tipoTirada === 1 && (
             <div className="flex justify-center py-4">

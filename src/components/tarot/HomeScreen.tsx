@@ -52,22 +52,22 @@ export function HomeScreen({
   };
 
   return (
-    <div className="mx-auto max-w-6xl px-4 pt-4 pb-12 sm:pt-6 sm:pb-16 overflow-hidden">
+    <div className="mx-auto max-w-5xl px-4 py-3 sm:py-6 overflow-hidden">
       {/* ============================================================== */}
-      {/* INCLINED CARDS SHOWCASE CAROUSEL (ABOVE THE TITLE)             */}
+      {/* COMPACT INCLINED CARDS CAROUSEL (ABOVE THE TITLE)              */}
       {/* ============================================================== */}
-      <div className="relative -mx-4 sm:-mx-8 mb-6 sm:mb-8 overflow-hidden py-3">
+      <div className="relative -mx-4 sm:-mx-6 mb-4 sm:mb-5 overflow-hidden py-1">
         {/* Subtle Edge Fade Gradients */}
-        <div className="pointer-events-none absolute left-0 inset-y-0 w-12 sm:w-28 bg-gradient-to-r from-paper via-paper/90 to-transparent z-10" />
-        <div className="pointer-events-none absolute right-0 inset-y-0 w-12 sm:w-28 bg-gradient-to-l from-paper via-paper/90 to-transparent z-10" />
+        <div className="pointer-events-none absolute left-0 inset-y-0 w-10 sm:w-24 bg-gradient-to-r from-paper via-paper/90 to-transparent z-10" />
+        <div className="pointer-events-none absolute right-0 inset-y-0 w-10 sm:w-24 bg-gradient-to-l from-paper via-paper/90 to-transparent z-10" />
 
-        {/* Slanted / Inclined Track */}
-        <div className="transform -rotate-2 sm:-rotate-3 origin-center scale-[1.02] py-3 select-none">
-          <div className="animate-card-marquee gap-3.5 sm:gap-5 items-center">
+        {/* Slanted / Inclined Track (Subtle tilt, low vertical profile) */}
+        <div className="transform -rotate-1 sm:-rotate-1.5 origin-center scale-[1.01] py-1.5 select-none">
+          <div className="animate-card-marquee gap-2.5 sm:gap-4 items-center">
             {[...CARTAS_CARROSSEL, ...CARTAS_CARROSSEL].map((item, idx) => (
               <div
                 key={`${item.id}-${idx}`}
-                className="group relative w-28 sm:w-36 md:w-44 aspect-[2/3] shrink-0 rounded-2xl overflow-hidden border border-line bg-paper-raised shadow-clean transition-all duration-300 hover:-translate-y-2.5 hover:shadow-xl hover:border-accent/40 cursor-pointer"
+                className="group relative w-20 sm:w-24 md:w-28 aspect-[2/3] shrink-0 rounded-xl overflow-hidden border border-line bg-paper-raised shadow-clean transition-all duration-300 hover:-translate-y-1.5 hover:shadow-lg hover:border-accent/40 cursor-pointer"
               >
                 <img
                   src={item.imagem}
@@ -75,8 +75,8 @@ export function HomeScreen({
                   className="h-full w-full object-cover select-none"
                   loading="lazy"
                 />
-                <div className="absolute inset-0 bg-ink/15 opacity-0 group-hover:opacity-100 transition-opacity flex items-end justify-center pb-2">
-                  <span className="font-mono text-[10px] sm:text-xs font-semibold px-2 py-0.5 rounded-md bg-paper/95 text-accent shadow-sm border border-line backdrop-blur-sm">
+                <div className="absolute inset-0 bg-ink/15 opacity-0 group-hover:opacity-100 transition-opacity flex items-end justify-center pb-1.5">
+                  <span className="font-mono text-[9px] sm:text-[10px] font-semibold px-1.5 py-0.5 rounded bg-paper/95 text-accent shadow-sm border border-line backdrop-blur-sm truncate max-w-[90%]">
                     {item.titulo}
                   </span>
                 </div>
@@ -87,27 +87,27 @@ export function HomeScreen({
       </div>
 
       {/* Hero Section (Focused & Compact) */}
-      <div className="text-center max-w-2xl mx-auto">
+      <div className="text-center max-w-xl mx-auto">
         {/* Main Title */}
-        <h1 className="font-display text-2xl sm:text-4xl md:text-5xl font-bold tracking-tight text-ink">
+        <h1 className="font-display text-2xl sm:text-3xl md:text-4xl font-bold tracking-tight text-ink">
           Tarot Especulativo
         </h1>
 
         {/* Second descriptive line */}
-        <p className="mt-2 text-xs sm:text-sm font-semibold uppercase tracking-wider text-accent">
+        <p className="mt-1 text-[11px] sm:text-xs font-semibold uppercase tracking-wider text-accent">
           Ferramenta de Design Especulativo & Pensamento de Futuros
         </p>
 
         {/* Subtitle / Description */}
-        <p className="mt-3 text-xs sm:text-sm text-ink-muted leading-relaxed max-w-lg mx-auto">
+        <p className="mt-2 text-xs sm:text-sm text-ink-muted leading-relaxed max-w-md mx-auto">
           Uma ferramenta para desarmar certezas, investigar riscos sistêmicos e explorar futuros possíveis através de tiradas provocativas.
         </p>
 
         {/* Primary Action Buttons */}
-        <div className="mt-6 flex flex-col sm:flex-row items-center justify-center gap-3">
+        <div className="mt-4 sm:mt-5 flex flex-col sm:flex-row items-center justify-center gap-2.5">
           <button
             onClick={() => setModalGuiaAberto(true)}
-            className="w-full sm:w-auto inline-flex items-center justify-center gap-2 rounded-lg bg-accent px-6 py-2.5 sm:px-7 sm:py-3 text-xs sm:text-sm font-semibold text-white shadow-clean transition-colors hover:bg-accent/90 focus-visible:outline-2 focus-visible:outline-accent"
+            className="w-full sm:w-auto inline-flex items-center justify-center gap-2 rounded-lg bg-accent px-5 py-2.5 text-xs sm:text-sm font-semibold text-white shadow-clean transition-colors hover:bg-accent/90 focus-visible:outline-2 focus-visible:outline-accent"
           >
             <Sparkles className="h-4 w-4" />
             <span>Iniciar Nova Tirada</span>
@@ -117,7 +117,7 @@ export function HomeScreen({
           {temSessaoValida && (
             <button
               onClick={onContinuarSessao}
-              className="w-full sm:w-auto inline-flex items-center justify-center gap-2 rounded-lg border border-line bg-paper-raised px-5 py-2.5 sm:px-6 sm:py-3 text-xs sm:text-sm font-medium text-ink shadow-clean transition-colors hover:bg-accent-soft hover:text-accent focus-visible:outline-2 focus-visible:outline-accent"
+              className="w-full sm:w-auto inline-flex items-center justify-center gap-2 rounded-lg border border-line bg-paper-raised px-4 py-2.5 text-xs sm:text-sm font-medium text-ink shadow-clean transition-colors hover:bg-accent-soft hover:text-accent focus-visible:outline-2 focus-visible:outline-accent"
             >
               <RotateCcw className="h-4 w-4 text-accent" />
               <span>Continuar Sessão em Andamento</span>
@@ -127,20 +127,20 @@ export function HomeScreen({
 
         {/* Saved Session Card Preview */}
         {temSessaoValida && (
-          <div className="mt-6 mx-auto max-w-md rounded-2xl border border-line bg-paper-raised p-5 text-left shadow-clean">
+          <div className="mt-4 mx-auto max-w-md rounded-xl border border-line bg-paper-raised p-4 text-left shadow-clean">
             <div className="flex items-center justify-between">
-              <span className="text-xs font-semibold text-accent uppercase tracking-wider">
+              <span className="text-[10px] font-semibold text-accent uppercase tracking-wider">
                 Sessão em Andamento
               </span>
-              <span className="text-xs text-ink-muted">
+              <span className="text-[11px] text-ink-muted">
                 {totalRespondidas} de {totalPerguntas} reflexões
               </span>
             </div>
-            <p className="mt-1.5 text-sm font-semibold text-ink line-clamp-1">
+            <p className="mt-1 text-xs sm:text-sm font-semibold text-ink line-clamp-1">
               &ldquo;{sessaoSalva.tema}&rdquo;
             </p>
-            <div className="mt-3 flex items-center justify-between border-t border-line pt-2.5">
-              <span className="text-xs text-ink-muted">
+            <div className="mt-2.5 flex items-center justify-between border-t border-line pt-2">
+              <span className="text-[11px] text-ink-muted">
                 Tirada de {sessaoSalva.tipoTirada} {sessaoSalva.tipoTirada === 1 ? "carta" : "cartas"}
               </span>
               <button

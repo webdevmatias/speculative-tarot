@@ -166,7 +166,7 @@ export function TarotCard({
             handleCardClick();
           }
         }}
-        className={`card-preserve-3d relative h-[360px] w-[230px] cursor-pointer rounded-2xl transition-transform duration-700 sm:h-[400px] sm:w-[260px] focus-visible:outline-2 focus-visible:outline-accent ${
+        className={`card-preserve-3d relative h-[290px] w-[190px] cursor-pointer rounded-xl transition-transform duration-700 sm:h-[330px] sm:w-[215px] focus-visible:outline-2 focus-visible:outline-accent ${
           virada ? "card-rotate-y-180 card-revealed-shadow" : "card-elevation hover:-translate-y-2"
         }`}
       >

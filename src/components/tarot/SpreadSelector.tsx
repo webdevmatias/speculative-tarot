@@ -59,27 +59,27 @@ export function SpreadSelector({
   ];
 
   return (
-    <div className="mx-auto max-w-5xl px-4 py-8 sm:px-6">
+    <div className="mx-auto max-w-5xl px-4 py-4 sm:py-6">
       {/* Header */}
-      <div className="text-center max-w-2xl mx-auto">
-        <span className="text-xs font-semibold uppercase tracking-wider text-accent">
+      <div className="text-center max-w-xl mx-auto">
+        <span className="text-[11px] font-semibold uppercase tracking-wider text-accent">
           Etapa 2 de 3
         </span>
-        <h2 className="mt-2 font-display text-2xl sm:text-4xl font-bold tracking-tight text-ink">
+        <h2 className="mt-1 font-display text-xl sm:text-2xl md:text-3xl font-bold tracking-tight text-ink">
           Escolha a Tirada de Cartas
         </h2>
-        <p className="mt-2 text-sm sm:text-base text-ink-muted">
-          Defina o nível de profundidade e o número de ângulos que deseja explorar para o tema:
+        <p className="mt-1 text-xs sm:text-sm text-ink-muted">
+          Defina o nível de profundidade e o número de ângulos que deseja explorar:
         </p>
 
         {/* Selected Theme chip */}
-        <div className="mt-4 inline-block rounded-2xl border border-line bg-paper px-4 py-2 text-xs sm:text-sm text-ink shadow-clean">
+        <div className="mt-2.5 inline-block rounded-xl border border-line bg-paper px-3 py-1 text-xs text-ink shadow-clean">
           <span className="font-semibold text-accent">Tema:</span> &ldquo;{tema}&rdquo;
         </div>
       </div>
 
       {/* Cards Options Grid */}
-      <div className="mt-10 grid grid-cols-1 md:grid-cols-3 gap-6">
+      <div className="mt-6 grid grid-cols-1 md:grid-cols-3 gap-4">
         {opcoes.map((opcao) => {
           const isSelected = tipoSelecionado === opcao.tipo;
 
@@ -87,7 +87,7 @@ export function SpreadSelector({
             <div
               key={opcao.tipo}
               onClick={() => onSelecionarTipo(opcao.tipo)}
-              className={`group relative cursor-pointer flex flex-col justify-between rounded-2xl border p-6 transition-all duration-200 focus-visible:outline-2 focus-visible:outline-accent ${
+              className={`group relative cursor-pointer flex flex-col justify-between rounded-xl border p-4 sm:p-5 transition-all duration-200 focus-visible:outline-2 focus-visible:outline-accent ${
                 isSelected
                   ? "border-accent bg-accent-soft shadow-clean ring-1 ring-accent"
                   : "border-line bg-paper-raised hover:border-accent/40 hover:bg-accent-soft/30 shadow-clean"
@@ -95,7 +95,7 @@ export function SpreadSelector({
             >
               {/* Highlight pill */}
               {opcao.destaque && (
-                <div className="absolute -top-3 left-1/2 -translate-x-1/2 rounded-lg border border-amber-200 bg-amber-50 px-3 py-0.5 text-[11px] font-bold uppercase tracking-wider text-amber-700 shadow-clean">
+                <div className="absolute -top-2.5 left-1/2 -translate-x-1/2 rounded-md border border-amber-200 bg-amber-50 px-2.5 py-0.5 text-[10px] font-bold uppercase tracking-wider text-amber-700 shadow-clean">
                   {opcao.destaque}
                 </div>
               )}
@@ -107,7 +107,7 @@ export function SpreadSelector({
                     {Array.from({ length: opcao.tipo }).map((_, i) => (
                       <div
                         key={i}
-                        className={`relative h-13 w-8.5 overflow-hidden rounded-md border transition-all shadow-sm ${
+                        className={`relative h-11 w-7.5 overflow-hidden rounded border transition-all shadow-sm ${
                           isSelected
                             ? "border-accent ring-1 ring-accent"
                             : "border-line group-hover:border-accent/30"
@@ -125,44 +125,44 @@ export function SpreadSelector({
                     ))}
                   </div>
 
-                  <div className="flex items-center gap-1 text-xs text-ink-muted">
-                    <Clock className="h-3.5 w-3.5 text-ink-muted" />
+                  <div className="flex items-center gap-1 text-[11px] text-ink-muted">
+                    <Clock className="h-3 w-3 text-ink-muted" />
                     <span>{opcao.tempoEstimado}</span>
                   </div>
                 </div>
 
-                {/* Title (Sans-serif font-bold per prompt instructions) */}
-                <h3 className="mt-5 text-xl font-bold text-ink group-hover:text-accent">
+                {/* Title */}
+                <h3 className="mt-3.5 text-base sm:text-lg font-bold text-ink group-hover:text-accent">
                   {opcao.titulo}
                 </h3>
-                <h4 className="text-xs font-semibold uppercase tracking-wider text-accent">
+                <h4 className="text-[11px] font-semibold uppercase tracking-wider text-accent">
                   {opcao.subtitulo}
                 </h4>
 
-                <p className="mt-3 text-xs sm:text-sm text-ink-muted leading-relaxed">
+                <p className="mt-2 text-xs text-ink-muted leading-relaxed">
                   {opcao.descricao}
                 </p>
 
-                <p className="mt-3 text-xs text-ink-muted border-t border-line pt-3 italic">
+                <p className="mt-2 text-[11px] text-ink-muted border-t border-line pt-2 italic">
                   {opcao.beneficio}
                 </p>
               </div>
 
               {/* Bottom selection feedback */}
-              <div className="mt-6 flex items-center justify-between border-t border-line pt-4">
-                <span className="text-xs font-medium text-ink-muted">
+              <div className="mt-4 flex items-center justify-between border-t border-line/70 pt-2.5">
+                <span className="text-[11px] font-medium text-ink-muted">
                   {isSelected ? "Selecionada" : "Clique para escolher"}
                 </span>
 
                 <div
-                  className={`flex h-5 w-5 items-center justify-center rounded-full border transition-all ${
+                  className={`flex h-4 w-4 items-center justify-center rounded-full border transition-all ${
                     isSelected
                       ? "border-accent bg-accent text-white"
                       : "border-line bg-paper group-hover:border-accent/40"
                   }`}
                 >
                   <div
-                    className={`h-2 w-2 rounded-full transition-colors ${
+                    className={`h-1.5 w-1.5 rounded-full transition-colors ${
                       isSelected ? "bg-white" : "bg-transparent"
                     }`}
                   />
@@ -174,10 +174,10 @@ export function SpreadSelector({
       </div>
 
       {/* Navigation Footer */}
-      <div className="mt-12 flex items-center justify-between border-t border-line pt-6">
+      <div className="mt-6 flex items-center justify-between border-t border-line pt-4">
         <button
           onClick={onVoltar}
-          className="flex items-center gap-2 rounded-lg border border-line bg-paper-raised px-4 py-2.5 text-xs sm:text-sm font-medium text-ink shadow-clean transition-colors hover:bg-accent-soft hover:text-accent focus-visible:outline-2 focus-visible:outline-accent"
+          className="flex items-center gap-2 rounded-lg border border-line bg-paper-raised px-4 py-2 text-xs sm:text-sm font-medium text-ink shadow-clean transition-colors hover:bg-accent-soft hover:text-accent focus-visible:outline-2 focus-visible:outline-accent"
         >
           <ArrowLeft className="h-4 w-4" />
           <span>Voltar ao Tema</span>
@@ -185,7 +185,7 @@ export function SpreadSelector({
 
         <button
           onClick={onIniciarMesa}
-          className="flex items-center gap-2 rounded-lg bg-accent px-6 py-2.5 text-xs sm:text-sm font-semibold text-white shadow-clean transition-colors hover:bg-accent/90 focus-visible:outline-2 focus-visible:outline-accent"
+          className="flex items-center gap-2 rounded-lg bg-accent px-5 py-2 text-xs sm:text-sm font-semibold text-white shadow-clean transition-colors hover:bg-accent/90 focus-visible:outline-2 focus-visible:outline-accent"
         >
           <Sparkles className="h-4 w-4" />
           <span>Dispor as Cartas na Mesa</span>

@@ -203,7 +203,7 @@ export function TarotCard({
               {/* Card Top Label */}
               <div className="relative z-10 flex items-center justify-between text-ink-muted">
                 <span className="font-mono text-[10px] tracking-wider uppercase">
-                  Tarot Especulativo
+                  Tarô Especulativo
                 </span>
                 <span className="font-mono text-xs font-medium">
                   0{slotIndex + 1}/0{totalCartas}

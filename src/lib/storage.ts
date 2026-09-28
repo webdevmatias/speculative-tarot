@@ -11,7 +11,7 @@ export function salvarSessao(sessao: SessaoTarot): void {
     };
     localStorage.setItem(STORAGE_KEY, JSON.stringify(dados));
   } catch (error) {
-    console.error("Falha ao salvar sessão do Tarot Especulativo no localStorage:", error);
+    console.error("Falha ao salvar sessão do Tarô Especulativo no localStorage:", error);
   }
 }
 
@@ -28,7 +28,7 @@ export function carregarSessao(): SessaoTarot | null {
     }
     return null;
   } catch (error) {
-    console.error("Falha ao carregar sessão do Tarot Especulativo do localStorage:", error);
+    console.error("Falha ao carregar sessão do Tarô Especulativo do localStorage:", error);
     return null;
   }
 }
@@ -38,7 +38,7 @@ export function limparSessao(): void {
   try {
     localStorage.removeItem(STORAGE_KEY);
   } catch (error) {
-    console.error("Falha ao limpar sessão do Tarot Especulativo:", error);
+    console.error("Falha ao limpar sessão do Tarô Especulativo:", error);
   }
 }
 
@@ -51,7 +51,7 @@ export function exportarComoMarkdown(sessao: SessaoTarot): string {
     minute: "2-digit",
   });
 
-  let md = `# Tarot Especulativo — Registro de Reflexão\n\n`;
+  let md = `# Tarô Especulativo — Registro de Reflexão\n\n`;
   md += `**Data:** ${data}\n`;
   md += `**Tema de Investigação:** ${sessao.tema}\n`;
   md += `**Modalidade da Tirada:** ${sessao.tipoTirada} ${sessao.tipoTirada === 1 ? "carta (Reflexão Rápida)" : sessao.tipoTirada === 3 ? "cartas (Exploração Intermediária)" : "cartas (Exploração Aprofundada)"}\n\n`;
@@ -84,14 +84,14 @@ export function exportarComoMarkdown(sessao: SessaoTarot): string {
   );
   md += `- **Perguntas Respondidas:** ${totalRespondidas} de ${totalPerguntas}\n`;
   md += `- **Ângulos Abordados:** ${sessao.cartas.map((c) => c.titulo).join(", ")}\n\n`;
-  md += `*Gerado com Tarot Especulativo — Ferramenta de Design Especulativo e Pensamento de Futuros.*\n`;
+  md += `*Gerado com Tarô Especulativo — Ferramenta de Design Especulativo e Pensamento de Futuros.*\n`;
 
   return md;
 }
 
 export function exportarComoTextoPuro(sessao: SessaoTarot): string {
   const data = new Date().toLocaleDateString("pt-BR");
-  let txt = `TAROT ESPECULATIVO - REGISTRO DE REFLEXÃO\n`;
+  let txt = `TARÔ ESPECULATIVO - REGISTRO DE REFLEXÃO\n`;
   txt += `Data: ${data}\n`;
   txt += `Tema: ${sessao.tema}\n`;
   txt += `Tirada: ${sessao.tipoTirada} carta(s)\n`;

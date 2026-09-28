@@ -15,12 +15,12 @@ const inter = Inter({
 });
 
 export const metadata: Metadata = {
-  title: "Tarot Especulativo — Ferramenta de Design Especulativo e Pensamento de Futuros",
+  title: "Tarô Especulativo — Ferramenta de Design Especulativo e Pensamento de Futuros",
   description:
     "Explore cenários futuros, consequências imprevistas, vieses ocultos e dilemas éticos através de tiradas de cartas com perguntas provocativas.",
   keywords: [
     "Design Especulativo",
-    "Tarot Especulativo",
+    "Tarô Especulativo",
     "Futuros Alternativos",
     "Foresight",
     "Inovação",

@@ -52,22 +52,22 @@ export function HomeScreen({
   };
 
   return (
-    <div className="mx-auto max-w-5xl px-4 pt-14 pb-8 sm:pt-20 sm:pb-12 overflow-hidden">
+    <div className="h-full w-full flex flex-col justify-center items-center px-4 py-2 sm:py-3 overflow-hidden">
       {/* ============================================================== */}
       {/* INCLINED CARDS CAROUSEL (3 CARDS IN VIEW: 1 FULL, 2 HALVES)    */}
       {/* ============================================================== */}
-      <div className="relative mx-auto max-w-[52vw] sm:max-w-[480px] md:max-w-[510px] mb-5 sm:mb-6 overflow-hidden py-1.5">
+      <div className="relative mx-auto max-w-[52vw] sm:max-w-[420px] md:max-w-[450px] mb-3 sm:mb-4 overflow-hidden py-1">
         {/* Subtle Edge Fade Gradients */}
-        <div className="pointer-events-none absolute left-0 inset-y-0 w-6 sm:w-12 bg-gradient-to-r from-paper to-transparent z-10" />
-        <div className="pointer-events-none absolute right-0 inset-y-0 w-6 sm:w-12 bg-gradient-to-l from-paper to-transparent z-10" />
+        <div className="pointer-events-none absolute left-0 inset-y-0 w-6 sm:w-10 bg-gradient-to-r from-paper to-transparent z-10" />
+        <div className="pointer-events-none absolute right-0 inset-y-0 w-6 sm:w-10 bg-gradient-to-l from-paper to-transparent z-10" />
 
         {/* Slanted / Inclined Track */}
-        <div className="transform -rotate-1 sm:-rotate-1.5 origin-center py-1.5 select-none">
-          <div className="animate-card-marquee gap-3.5 sm:gap-4 items-center">
+        <div className="transform -rotate-1 sm:-rotate-1.5 origin-center py-1 select-none">
+          <div className="animate-card-marquee gap-3 sm:gap-3.5 items-center">
             {[...CARTAS_CARROSSEL, ...CARTAS_CARROSSEL].map((item, idx) => (
               <div
                 key={`${item.id}-${idx}`}
-                className="group relative w-[52vw] sm:w-[195px] md:w-[215px] aspect-[2/3] shrink-0 rounded-xl overflow-hidden border border-line bg-paper-raised shadow-clean transition-all duration-300 hover:-translate-y-1.5 hover:shadow-xl hover:border-accent/40 cursor-pointer"
+                className="group relative w-[52vw] sm:w-[170px] md:w-[185px] aspect-[2/3] shrink-0 rounded-xl overflow-hidden border border-line bg-paper-raised shadow-clean transition-all duration-300 hover:-translate-y-1.5 hover:shadow-xl hover:border-accent/40 cursor-pointer"
               >
                 <img
                   src={item.imagem}
@@ -90,7 +90,7 @@ export function HomeScreen({
       <div className="text-center max-w-xl mx-auto">
         {/* Main Title */}
         <h1 className="font-display text-2xl sm:text-3xl md:text-4xl font-bold tracking-tight text-ink">
-          Tarot Especulativo
+          Tarô Especulativo
         </h1>
 
         {/* Second descriptive line */}
@@ -99,7 +99,7 @@ export function HomeScreen({
         </p>
 
         {/* Subtitle / Description */}
-        <p className="mt-2 text-xs sm:text-sm text-ink-muted leading-relaxed max-w-md mx-auto">
+        <p className="mt-1.5 text-xs sm:text-sm text-ink-muted leading-relaxed max-w-md mx-auto">
           Uma ferramenta para desarmar certezas, investigar riscos sistêmicos e explorar futuros possíveis através de tiradas provocativas.
         </p>
 
@@ -177,7 +177,7 @@ export function HomeScreen({
                 Como funciona a exploração especulativa?
               </h2>
               <p className="mt-2 text-sm text-ink-muted leading-relaxed">
-                Em vez de predizer o futuro, o Tarot Especulativo atua como uma máquina de criar perguntas desconfortáveis sobre o presente.
+                Em vez de predizer o futuro, o Tarô Especulativo atua como uma máquina de criar perguntas desconfortáveis sobre o presente.
               </p>
             </div>
 

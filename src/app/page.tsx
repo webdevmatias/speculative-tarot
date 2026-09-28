@@ -244,7 +244,7 @@ export default function TarotEspeculativoApp() {
 
   return (
     <div
-      className="flex min-h-screen flex-col bg-paper text-ink selection:bg-accent-soft selection:text-accent"
+      className="flex h-screen max-h-screen w-full flex-col overflow-hidden bg-paper text-ink selection:bg-accent-soft selection:text-accent"
       suppressHydrationWarning
     >
       {/* Navigation Header */}
@@ -255,8 +255,8 @@ export default function TarotEspeculativoApp() {
         temSessaoAtiva={cartas.length > 0}
       />
 
-      {/* Main Container */}
-      <main className="flex-1">
+      {/* Main Container: fills remaining viewport height */}
+      <main className="flex-1 min-h-0 overflow-y-auto overflow-x-hidden flex flex-col">
         {/* Step 0: Home Screen */}
         {etapa === "inicio" && (
           <HomeScreen
@@ -289,7 +289,7 @@ export default function TarotEspeculativoApp() {
 
         {/* Step 3: Tarot Card Table & Question Trail */}
         {etapa === "mesa" && cartaAtiva && (
-          <div className="pb-24">
+          <div className="pb-6">
             {/* The Physical Card Table */}
             <CardTable
               tema={tema}

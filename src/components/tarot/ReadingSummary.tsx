@@ -68,7 +68,7 @@ export function ReadingSummary({
 
   // Structured prompt ready for external AI analysis
   const promptIA = `Você é um facilitador sênior de Design Especulativo e Pensamento Crítico de Futuros. 
-Analise a seguinte sessão realizada com o Tarot Especulativo:
+Analise a seguinte sessão realizada com o Tarô Especulativo:
 
 TEMA DE INVESTIGAÇÃO:
 "${sessao.tema}"

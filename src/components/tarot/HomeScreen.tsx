@@ -52,22 +52,22 @@ export function HomeScreen({
   };
 
   return (
-    <div className="mx-auto max-w-5xl px-4 py-3 sm:py-6 overflow-hidden">
+    <div className="mx-auto max-w-5xl px-4 pt-14 pb-8 sm:pt-20 sm:pb-12 overflow-hidden">
       {/* ============================================================== */}
-      {/* COMPACT INCLINED CARDS CAROUSEL (ABOVE THE TITLE)              */}
+      {/* INCLINED CARDS CAROUSEL (3 CARDS IN VIEW: 1 FULL, 2 HALVES)    */}
       {/* ============================================================== */}
-      <div className="relative -mx-4 sm:-mx-6 mb-4 sm:mb-5 overflow-hidden py-1">
+      <div className="relative mx-auto max-w-[520px] sm:max-w-[600px] md:max-w-[660px] mb-6 sm:mb-8 overflow-hidden py-2">
         {/* Subtle Edge Fade Gradients */}
-        <div className="pointer-events-none absolute left-0 inset-y-0 w-10 sm:w-24 bg-gradient-to-r from-paper via-paper/90 to-transparent z-10" />
-        <div className="pointer-events-none absolute right-0 inset-y-0 w-10 sm:w-24 bg-gradient-to-l from-paper via-paper/90 to-transparent z-10" />
+        <div className="pointer-events-none absolute left-0 inset-y-0 w-8 sm:w-16 bg-gradient-to-r from-paper to-transparent z-10" />
+        <div className="pointer-events-none absolute right-0 inset-y-0 w-8 sm:w-16 bg-gradient-to-l from-paper to-transparent z-10" />
 
-        {/* Slanted / Inclined Track (Subtle tilt, low vertical profile) */}
-        <div className="transform -rotate-1 sm:-rotate-1.5 origin-center scale-[1.01] py-1.5 select-none">
-          <div className="animate-card-marquee gap-2.5 sm:gap-4 items-center">
+        {/* Slanted / Inclined Track */}
+        <div className="transform -rotate-1 sm:-rotate-1.5 origin-center py-2 select-none">
+          <div className="animate-card-marquee gap-4 sm:gap-6 items-center">
             {[...CARTAS_CARROSSEL, ...CARTAS_CARROSSEL].map((item, idx) => (
               <div
                 key={`${item.id}-${idx}`}
-                className="group relative w-20 sm:w-24 md:w-28 aspect-[2/3] shrink-0 rounded-xl overflow-hidden border border-line bg-paper-raised shadow-clean transition-all duration-300 hover:-translate-y-1.5 hover:shadow-lg hover:border-accent/40 cursor-pointer"
+                className="group relative w-[54vw] sm:w-[250px] md:w-[275px] aspect-[2/3] shrink-0 rounded-2xl overflow-hidden border border-line bg-paper-raised shadow-clean transition-all duration-300 hover:-translate-y-2 hover:shadow-xl hover:border-accent/40 cursor-pointer"
               >
                 <img
                   src={item.imagem}
@@ -75,8 +75,8 @@ export function HomeScreen({
                   className="h-full w-full object-cover select-none"
                   loading="lazy"
                 />
-                <div className="absolute inset-0 bg-ink/15 opacity-0 group-hover:opacity-100 transition-opacity flex items-end justify-center pb-1.5">
-                  <span className="font-mono text-[9px] sm:text-[10px] font-semibold px-1.5 py-0.5 rounded bg-paper/95 text-accent shadow-sm border border-line backdrop-blur-sm truncate max-w-[90%]">
+                <div className="absolute inset-0 bg-ink/15 opacity-0 group-hover:opacity-100 transition-opacity flex items-end justify-center pb-2.5">
+                  <span className="font-mono text-[10px] sm:text-xs font-semibold px-2 py-0.5 rounded-md bg-paper/95 text-accent shadow-sm border border-line backdrop-blur-sm truncate max-w-[90%]">
                     {item.titulo}
                   </span>
                 </div>

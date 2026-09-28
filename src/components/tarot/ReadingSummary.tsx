@@ -37,10 +37,9 @@ export function ReadingSummary({
 
   const totalCartas = sessao.cartas.length;
   const totalPerguntas = sessao.cartas.reduce((acc, c) => acc + c.perguntas.length, 0);
-  const totalRespondidas = sessao.cartas.reduce(
-    (acc, c) => acc + c.perguntas.filter((p) => p.resposta && p.resposta.trim().length > 0).length,
-    0
-  );
+  const totalRespondidas = sessao.cartas.filter(
+    (c) => c.perguntas[0]?.resposta && c.perguntas[0].resposta.trim().length > 0
+  ).length;
 
   const downloadArquivo = (conteudo: string, nomeArquivo: string, tipo: string) => {
     const blob = new Blob([conteudo], { type: tipo });
@@ -80,11 +79,13 @@ TEMA DE INVESTIGAÇÃO:
 TIRADA:
 ${sessao.tipoTirada} carta(s)
 
-REGISTRO DE CARTAS E RESPOSTAS:
+REGISTRO DE CARTAS E REFLEXÕES:
 ${sessao.cartas
   .map(
     (c) => `[Carta ${c.numeroRomano}: ${c.titulo}]
-${c.perguntas.map((p, i) => `Pergunta ${i + 1}: ${p.pergunta}\nResposta: ${p.resposta || "(Sem resposta registrada)"}`).join("\n")}`
+Provocações:
+${c.perguntas.map((p, i) => `${i + 1}. ${p.pergunta}`).join("\n")}
+Reflexão: ${c.perguntas[0]?.resposta?.trim() ? c.perguntas[0].resposta : "(Sem reflexão registrada)"}`
   )
   .join("\n\n")}
 
@@ -195,11 +196,11 @@ Com base estritamente nas respostas e tensões levantadas pelo usuário acima:
               </span>
               <span>•</span>
               <span className="flex items-center gap-1">
-                <CheckCircle2 className="h-3 w-3 text-emerald-700" />
-                <span className="text-emerald-700 font-medium">
-                  {totalRespondidas} de {totalPerguntas} perguntas respondidas
+                  <CheckCircle2 className="h-3 w-3 text-emerald-700" />
+                  <span className="text-emerald-700 font-medium">
+                    {totalRespondidas} de {totalCartas} carta{totalCartas > 1 ? "s" : ""} com reflexão
+                  </span>
                 </span>
-              </span>
             </div>
           </div>
         </header>
@@ -247,33 +248,27 @@ Com base estritamente nas respostas e tensões levantadas pelo usuário acima:
 
               {/* Questions and Answers */}
               <div className="space-y-6 pl-2">
-                {carta.perguntas.map((pq, pIdx) => {
-                  const temResposta = pq.resposta && pq.resposta.trim().length > 0;
-                  return (
-                    <div key={`resumo-pq-${pIdx}`} className="space-y-2">
-                      <div className="flex items-start gap-2">
-                        <span className="font-mono text-xs font-bold text-accent mt-0.5">
-                          {pIdx + 1}.
-                        </span>
-                        <h3 className="text-sm font-semibold text-ink leading-snug">
-                          {pq.pergunta}
-                        </h3>
-                      </div>
-
-                      <div className="pl-4 border-l-2 border-accent">
-                        {temResposta ? (
-                          <p className="text-sm text-ink leading-relaxed whitespace-pre-wrap">
-                            {pq.resposta}
-                          </p>
-                        ) : (
-                          <p className="text-xs italic text-ink-muted">
-                            (Nenhuma resposta registrada para esta provocação)
-                          </p>
-                        )}
-                      </div>
+                {carta.perguntas.map((pq, pIdx) => (
+                  <div key={`resumo-pq-${pIdx}`} className="space-y-2">
+                    <div className="flex items-start gap-2">
+                      <span className="font-mono text-xs font-bold text-accent mt-0.5">
+                        {pIdx + 1}.
+                      </span>
+                      <h3 className="text-sm font-semibold text-ink leading-snug">
+                        {pq.pergunta}
+                      </h3>
                     </div>
-                  );
-                })}
+                  </div>
+                ))}
+
+                {/* Single combined reflection (stored in first question's resposta) */}
+                {carta.perguntas[0]?.resposta && carta.perguntas[0].resposta.trim().length > 0 && (
+                  <div className="pl-4 border-l-2 border-accent mt-4">
+                    <p className="text-sm text-ink leading-relaxed whitespace-pre-wrap">
+                      {carta.perguntas[0].resposta}
+                    </p>
+                  </div>
+                )}
               </div>
             </section>
           ))}

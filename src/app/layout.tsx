@@ -27,6 +27,13 @@ export const metadata: Metadata = {
     "Design Thinking",
     "Ética em Tecnologia",
   ],
+  icons: {
+    icon: [
+      { url: "/favicon.svg", type: "image/svg+xml" },
+    ],
+    shortcut: "/favicon.svg",
+    apple: "/favicon.svg",
+  },
 };
 
 export default function RootLayout({
@@ -36,6 +43,40 @@ export default function RootLayout({
 }>) {
   return (
     <html lang="pt-BR" className={`${spaceGrotesk.variable} ${plusJakartaSans.variable}`} suppressHydrationWarning>
+      <head>
+        <script
+          dangerouslySetInnerHTML={{
+            __html: `
+              if (typeof window !== 'undefined') {
+                window.addEventListener('unhandledrejection', function(event) {
+                  var reason = event.reason;
+                  var stack = (reason && reason.stack) || '';
+                  var message = (reason && reason.message) || String(reason || '');
+                  if (
+                    stack.indexOf('chrome-extension://') !== -1 ||
+                    stack.indexOf('moz-extension://') !== -1 ||
+                    message.indexOf('M_ID') !== -1
+                  ) {
+                    event.preventDefault();
+                    event.stopImmediatePropagation();
+                  }
+                }, true);
+
+                // Filter out hydration warnings caused by extensions modifying the DOM (e.g. Bitdefender's bis_skin_checked)
+                var origError = console.error;
+                console.error = function() {
+                  var args = Array.prototype.slice.call(arguments);
+                  var str = args.map(function(a) { return String(a); }).join(' ');
+                  if (str.indexOf('bis_skin_checked') !== -1) {
+                    return;
+                  }
+                  origError.apply(console, args);
+                };
+              }
+            `,
+          }}
+        />
+      </head>
       <body
         className="min-h-screen bg-paper text-ink font-sans selection:bg-accent-soft selection:text-accent antialiased overflow-x-hidden flex flex-col"
         suppressHydrationWarning

@@ -18,7 +18,7 @@ export function Footer() {
         </p>
 
         <p className="text-[10px] sm:text-[11px] text-ink-muted/70">
-          A ideia não é autoral — projeto inspirado no{" "}
+          Projeto inspirado no{" "}
           <a
             href="https://tarotcardsoftech.artefactgroup.com/"
             target="_blank"

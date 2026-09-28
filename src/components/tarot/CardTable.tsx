@@ -34,11 +34,6 @@ export function CardTable({
 }: CardTableProps) {
   const cartaAtiva = cartas[cartaAtivaIndex];
   const todasViradas = cartas.every((c) => c.virada);
-  const totalPerguntasGeral = cartas.reduce((acc, c) => acc + c.perguntas.length, 0);
-  const totalRespondidasGeral = cartas.reduce(
-    (acc, c) => acc + c.perguntas.filter((p) => p.resposta && p.resposta.trim().length > 0).length,
-    0
-  );
 
   const getSubtitulo = (c: CartaSessao) => {
     return c.subtitulo || TODAS_AS_CARTAS.find((d) => d.titulo === c.titulo)?.subtitulo || "";

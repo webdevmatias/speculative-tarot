@@ -34,18 +34,6 @@ export function HomeScreen({
     sessaoSalva.cartas &&
     sessaoSalva.cartas.length > 0;
 
-  const totalPerguntas = temSessaoValida
-    ? sessaoSalva.cartas.reduce((acc, c) => acc + c.perguntas.length, 0)
-    : 0;
-  const totalRespondidas = temSessaoValida
-    ? sessaoSalva.cartas.reduce(
-      (acc, c) =>
-        acc +
-        c.perguntas.filter((p) => p.resposta && p.resposta.trim().length > 0).length,
-      0
-    )
-    : 0;
-
   const handleConfirmarInicio = () => {
     setModalGuiaAberto(false);
     onIniciarNovaTirada();
@@ -56,18 +44,18 @@ export function HomeScreen({
       {/* ============================================================== */}
       {/* INCLINED CARDS CAROUSEL (3 CARDS IN VIEW: 1 FULL, 2 HALVES)    */}
       {/* ============================================================== */}
-      <div className="relative mx-auto max-w-[52vw] sm:max-w-[420px] md:max-w-[450px] mb-3 sm:mb-4 overflow-hidden py-1">
+      <div className="relative mx-auto w-full max-w-[88vw] sm:max-w-[420px] md:max-w-[450px] mb-2 sm:mb-3 overflow-hidden py-4 sm:py-5">
         {/* Subtle Edge Fade Gradients */}
-        <div className="pointer-events-none absolute left-0 inset-y-0 w-6 sm:w-10 bg-gradient-to-r from-paper to-transparent z-10" />
-        <div className="pointer-events-none absolute right-0 inset-y-0 w-6 sm:w-10 bg-gradient-to-l from-paper to-transparent z-10" />
+        <div className="pointer-events-none absolute left-0 inset-y-0 w-10 sm:w-16 bg-gradient-to-r from-paper via-paper/75 to-transparent z-10" />
+        <div className="pointer-events-none absolute right-0 inset-y-0 w-10 sm:w-16 bg-gradient-to-l from-paper via-paper/75 to-transparent z-10" />
 
-        {/* Slanted / Inclined Track */}
+        {/* Subtly Curved / Slanted Track */}
         <div className="transform -rotate-1 sm:-rotate-1.5 origin-center py-1 select-none">
           <div className="animate-card-marquee gap-3 sm:gap-3.5 items-center">
             {[...CARTAS_CARROSSEL, ...CARTAS_CARROSSEL].map((item, idx) => (
               <div
                 key={`${item.id}-${idx}`}
-                className="group relative w-[52vw] sm:w-[170px] md:w-[185px] aspect-[2/3] shrink-0 rounded-xl overflow-hidden border border-line bg-paper-raised shadow-clean transition-all duration-300 hover:-translate-y-1.5 hover:shadow-xl hover:border-accent/40 cursor-pointer"
+                className="group relative w-[38vw] max-w-[145px] sm:w-[170px] md:w-[185px] aspect-[2/3] shrink-0 rounded-xl overflow-hidden border border-line bg-paper-raised shadow-clean transition-all duration-300 hover:-translate-y-1.5 hover:shadow-xl hover:border-accent/40 cursor-pointer"
               >
                 <img
                   src={item.imagem}

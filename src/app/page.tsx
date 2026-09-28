@@ -267,8 +267,6 @@ export default function TarotEspeculativoApp() {
         onNovaTirada={handleIniciarNovaTirada}
         onIrInicio={() => setEtapa("inicio")}
         temSessaoAtiva={cartas.length > 0}
-        sessaoSalva={sessaoSalva}
-        onContinuarSessao={handleContinuarSessao}
       />
 
       {/* Main Container: fills remaining viewport height and scrolls smoothly without clipping top content */}

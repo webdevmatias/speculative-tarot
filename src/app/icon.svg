@@ -1,0 +1,21 @@
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 64 64" width="64" height="64">
+  <!-- White Background with soft rounded corners -->
+  <rect width="64" height="64" rx="14" fill="#FFFFFF" />
+  
+  <!-- Outer Compass Ring -->
+  <circle cx="32" cy="32" r="22" stroke="#5A35D0" stroke-width="3.5" fill="none" />
+  
+  <!-- Cardinal Tick Marks -->
+  <line x1="32" y1="10" x2="32" y2="13.5" stroke="#5A35D0" stroke-width="2.5" stroke-linecap="round" />
+  <line x1="32" y1="50.5" x2="32" y2="54" stroke="#5A35D0" stroke-width="2.5" stroke-linecap="round" />
+  <line x1="10" y1="32" x2="13.5" y2="32" stroke="#5A35D0" stroke-width="2.5" stroke-linecap="round" />
+  <line x1="50.5" y1="32" x2="54" y2="32" stroke="#5A35D0" stroke-width="2.5" stroke-linecap="round" />
+  
+  <!-- Compass Needle (North-East pointing, filled) -->
+  <polygon points="32,32 44,20 27,27" fill="#5A35D0" />
+  <polygon points="32,32 20,44 37,37" fill="#8B6BF0" />
+  <polygon points="44,20 37,37 20,44 27,27" fill="none" stroke="#5A35D0" stroke-width="2" stroke-linejoin="round" />
+  
+  <!-- Center Pivot Pin -->
+  <circle cx="32" cy="32" r="3" fill="#FFFFFF" stroke="#5A35D0" stroke-width="2" />
+</svg>

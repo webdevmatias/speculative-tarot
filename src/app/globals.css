@@ -114,7 +114,7 @@
 .animate-card-marquee {
   display: flex;
   width: max-content;
-  animation: card-marquee 38s linear infinite;
+  animation: card-marquee 75s linear infinite;
   will-change: transform;
 }
 

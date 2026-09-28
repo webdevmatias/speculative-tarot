@@ -166,9 +166,9 @@ export function TarotCard({
             handleCardClick();
           }
         }}
-        className={`card-preserve-3d relative h-[290px] w-[190px] cursor-pointer rounded-xl transition-transform duration-700 sm:h-[330px] sm:w-[215px] focus-visible:outline-2 focus-visible:outline-accent ${
-          virada ? "card-rotate-y-180 card-revealed-shadow" : "card-elevation hover:-translate-y-2"
-        }`}
+        className={`card-preserve-3d relative h-[210px] w-[140px] cursor-pointer rounded-xl transition-transform duration-700 sm:h-[240px] sm:w-[160px] focus-visible:outline-2 focus-visible:outline-accent ${
+          virada ? "card-rotate-y-180 card-revealed-shadow" : "card-elevation hover:-translate-y-1.5"
+        } ${isAtiva && virada ? "ring-2 ring-accent ring-offset-2 ring-offset-paper-raised" : ""}`}
       >
         {/* ============================================================== */}
         {/* VERSO DA CARTA (Face Down)                                     */}

@@ -15,12 +15,15 @@ import {
 } from "lucide-react";
 import { SessaoTarot } from "@/types/tarot";
 import { exportarComoMarkdown, exportarComoTextoPuro } from "@/lib/storage";
+import { Breadcrumbs, EtapaFluxo } from "@/components/ui/Breadcrumbs";
+import { TODAS_AS_CARTAS } from "@/lib/data";
 
 interface ReadingSummaryProps {
   sessao: SessaoTarot;
   onVoltarRevisar: () => void;
   onNovaTirada: () => void;
   onCopiarReflexao: () => void;
+  onNavegarEtapa?: (etapa: EtapaFluxo) => void;
 }
 
 export function ReadingSummary({
@@ -28,6 +31,7 @@ export function ReadingSummary({
   onVoltarRevisar,
   onNovaTirada,
   onCopiarReflexao,
+  onNavegarEtapa,
 }: ReadingSummaryProps) {
   const [expandirPromptIA, setExpandirPromptIA] = useState(false);
 
@@ -90,17 +94,30 @@ Com base estritamente nas respostas e tensões levantadas pelo usuário acima:
 3. Proponha 2 intervenções conceituais ou perguntas provocativas de segundo nível para aprofundar o projeto.`;
 
   return (
-    <div className="mx-auto max-w-4xl px-4 py-4 sm:py-6">
+    <div className="mx-auto max-w-4xl px-4 py-3 sm:py-5">
+      {/* Breadcrumbs Navigation */}
+      <div className="flex justify-center mb-4 sm:mb-5">
+        <Breadcrumbs
+          etapaAtual="resumo"
+          onNavegar={(etp) => {
+            if (etp === "perguntas") onVoltarRevisar();
+            else onNavegarEtapa?.(etp);
+          }}
+          temTema={true}
+          temCartas={true}
+        />
+      </div>
+
       {/* ============================================================== */}
       {/* TOP ACTIONS BAR (Hidden when printing)                         */}
       {/* ============================================================== */}
-      <div className="no-print mb-5 flex flex-wrap items-center justify-between gap-3 border-b border-line pb-3.5">
+      <div className="no-print mb-3 flex flex-wrap items-center justify-between gap-2 border-b border-line pb-2.5">
         <button
           onClick={onVoltarRevisar}
-          className="flex items-center gap-1.5 rounded-lg border border-line bg-paper-raised px-3.5 py-1.5 text-xs font-medium text-ink shadow-clean transition-colors hover:bg-accent-soft hover:text-accent focus-visible:outline-2 focus-visible:outline-accent"
+          className="flex items-center gap-1.5 rounded-lg border border-line bg-paper-raised px-3 py-1.5 text-xs font-medium text-ink shadow-clean transition-colors hover:bg-accent-soft hover:text-accent focus-visible:outline-2 focus-visible:outline-accent"
         >
           <ArrowLeft className="h-3.5 w-3.5" />
-          <span>Voltar para Mesa</span>
+          <span>Voltar para Perguntas</span>
         </button>
 
         <div className="flex flex-wrap items-center gap-2">
@@ -165,14 +182,11 @@ Com base estritamente nas respostas e tensões levantadas pelo usuário acima:
           </h1>
 
           {/* Theme Banner */}
-          <div className="mt-3 rounded-xl border border-line bg-paper p-3.5">
-            <div className="text-[10px] font-semibold uppercase tracking-wider text-ink-muted">
-              Tema Investigado
-            </div>
-            <p className="mt-0.5 text-base sm:text-lg font-bold text-ink">
-              &ldquo;{sessao.tema}&rdquo;
+          <div className="mt-3 rounded-xl border border-line bg-paper p-3">
+            <p className="text-base sm:text-lg font-bold text-ink">
+              <span className="font-semibold text-accent">Tema:</span> &ldquo;{sessao.tema}&rdquo;
             </p>
-            <div className="mt-1.5 flex flex-wrap items-center gap-2.5 text-xs text-ink-muted">
+            <div className="mt-1 flex flex-wrap items-center gap-2.5 text-xs text-ink-muted">
               <span className="flex items-center gap-1">
                 <Layers className="h-3 w-3 text-accent" />
                 <span>
@@ -189,37 +203,6 @@ Com base estritamente nas respostas e tensões levantadas pelo usuário acima:
             </div>
           </div>
         </header>
-
-        {/* Structural Synthesis Overview */}
-        <section aria-label="Síntese estrutural da tirada" className="mt-5 rounded-xl border border-line bg-paper p-4">
-          <h2 className="text-[11px] font-bold uppercase tracking-wider text-ink-muted">
-            Síntese Estrutural da Tirada
-          </h2>
-          <div className="mt-2.5 grid grid-cols-1 sm:grid-cols-3 gap-3">
-            <div className="rounded-lg border border-line bg-paper-raised p-3 shadow-clean">
-              <span className="text-[10px] text-ink-muted">Ângulos Explorados</span>
-              <p className="mt-0.5 text-sm font-bold text-ink">
-                {sessao.cartas.map((c) => c.titulo).join(" • ")}
-              </p>
-            </div>
-            <div className="rounded-lg border border-line bg-paper-raised p-3 shadow-clean">
-              <span className="text-[10px] text-ink-muted">Cobertura de Questões</span>
-              <p className="mt-0.5 text-sm font-bold text-emerald-700">
-                {Math.round((totalRespondidas / Math.max(1, totalPerguntas)) * 100)}% concluída
-              </p>
-            </div>
-            <div className="rounded-lg border border-line bg-paper-raised p-3 shadow-clean">
-              <span className="text-[10px] text-ink-muted">Escopo da Investigação</span>
-              <p className="mt-0.5 text-sm font-bold text-accent">
-                {sessao.tipoTirada === 1
-                  ? "Foco Direcionado"
-                  : sessao.tipoTirada === 3
-                  ? "Triangulação de Forças"
-                  : "Mapeamento Sistêmico Amplo"}
-              </p>
-            </div>
-          </div>
-        </section>
 
         {/* Detailed Cards and Answers (Clean hairline dividers) */}
         <div className="mt-6 divide-y divide-line">
@@ -249,9 +232,9 @@ Com base estritamente nas respostas e tensões levantadas pelo usuário acima:
                         {carta.titulo}
                       </h2>
                     </div>
-                    {carta.subtitulo && (
+                    {(carta.subtitulo || TODAS_AS_CARTAS.find((d) => d.titulo === carta.titulo)?.subtitulo) && (
                       <p className="text-xs text-ink-muted italic mt-0.5">
-                        {carta.subtitulo}
+                        {carta.subtitulo || TODAS_AS_CARTAS.find((d) => d.titulo === carta.titulo)?.subtitulo}
                       </p>
                     )}
                   </div>
@@ -297,52 +280,52 @@ Com base estritamente nas respostas e tensões levantadas pelo usuário acima:
         </div>
 
         {/* ============================================================== */}
-        {/* FUTURE AI INTEGRATION MODULE                                   */}
+        {/* FUTURE AI INTEGRATION MODULE (Compact)                         */}
         {/* ============================================================== */}
-        <div className="no-print mt-12 rounded-2xl border border-line bg-paper p-6 shadow-clean">
-          <div className="flex items-center justify-between">
+        <div className="no-print mt-6 rounded-xl border border-line bg-paper p-3 sm:p-4 shadow-clean">
+          <div className="flex flex-col sm:flex-row sm:items-center justify-between gap-2.5">
             <div className="flex items-center gap-2">
-              <Bot className="h-5 w-5 text-accent" />
+              <Bot className="h-4 w-4 text-accent shrink-0" />
               <div>
-                <h4 className="text-sm font-semibold text-ink">
+                <h4 className="text-xs sm:text-sm font-semibold text-ink">
                   Aprofundamento com Inteligência Artificial
                 </h4>
-                <p className="text-xs text-ink-muted">
-                  Copie o prompt estruturado gerado a partir das suas respostas para analisar em qualquer IA (ChatGPT, Claude, Gemini).
+                <p className="text-[11px] text-ink-muted leading-tight">
+                  Analise esta reflexão em IAs generativas (ChatGPT, Claude ou Gemini).
                 </p>
               </div>
             </div>
 
-            <button
-              onClick={() => setExpandirPromptIA(!expandirPromptIA)}
-              className="flex items-center gap-1 rounded-lg border border-line bg-paper-raised px-3 py-1.5 text-xs font-medium text-ink hover:bg-accent-soft hover:text-accent shadow-clean transition-colors focus-visible:outline-2 focus-visible:outline-accent"
-            >
-              <span>{expandirPromptIA ? "Ocultar Prompt" : "Ver Prompt"}</span>
-              {expandirPromptIA ? (
-                <ChevronUp className="h-3.5 w-3.5" />
-              ) : (
-                <ChevronDown className="h-3.5 w-3.5" />
-              )}
-            </button>
+            <div className="flex items-center gap-1.5 shrink-0 self-end sm:self-center">
+              <button
+                onClick={() => {
+                  navigator.clipboard.writeText(promptIA);
+                  onCopiarReflexao();
+                }}
+                className="flex items-center gap-1 rounded-md border border-line bg-accent-soft px-2.5 py-1 text-xs font-medium text-accent hover:bg-accent hover:text-white transition-colors shadow-clean focus-visible:outline-2 focus-visible:outline-accent"
+              >
+                <Copy className="h-3 w-3" />
+                <span>Copiar Prompt</span>
+              </button>
+              <button
+                onClick={() => setExpandirPromptIA(!expandirPromptIA)}
+                className="flex items-center gap-1 rounded-md border border-line bg-paper-raised px-2.5 py-1 text-xs font-medium text-ink-muted hover:text-ink transition-colors shadow-clean focus-visible:outline-2 focus-visible:outline-accent"
+              >
+                <span>{expandirPromptIA ? "Ocultar" : "Ver"}</span>
+                {expandirPromptIA ? (
+                  <ChevronUp className="h-3 w-3" />
+                ) : (
+                  <ChevronDown className="h-3 w-3" />
+                )}
+              </button>
+            </div>
           </div>
 
           {expandirPromptIA && (
-            <div className="mt-4 border-t border-line pt-4">
-              <div className="relative">
-                <pre className="max-h-60 overflow-y-auto rounded-lg border border-line bg-paper-raised p-4 text-xs font-mono text-ink whitespace-pre-wrap leading-relaxed">
-                  {promptIA}
-                </pre>
-                <button
-                  onClick={() => {
-                    navigator.clipboard.writeText(promptIA);
-                    onCopiarReflexao();
-                  }}
-                  className="absolute top-2.5 right-2.5 flex items-center gap-1 rounded-lg border border-line bg-accent-soft px-2.5 py-1 text-xs font-medium text-accent shadow-clean hover:bg-accent hover:text-white transition-colors focus-visible:outline-2 focus-visible:outline-accent"
-                >
-                  <Copy className="h-3.5 w-3.5" />
-                  <span>Copiar Prompt</span>
-                </button>
-              </div>
+            <div className="mt-2.5 border-t border-line pt-2.5">
+              <pre className="max-h-48 overflow-y-auto rounded-lg border border-line bg-paper-raised p-3 text-[11px] font-mono text-ink whitespace-pre-wrap leading-relaxed">
+                {promptIA}
+              </pre>
             </div>
           )}
         </div>

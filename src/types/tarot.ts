@@ -54,7 +54,7 @@ export interface SessaoTarot {
   tipoTirada: TipoTirada;
   cartas: CartaSessao[];
   cartaAtualIndex: number;
-  etapa: "inicio" | "tema" | "tirada" | "mesa" | "resumo";
+  etapa: "inicio" | "tema" | "tirada" | "mesa" | "perguntas" | "resumo";
   dataCriacao: string;
   ultimaModificacao: string;
 }

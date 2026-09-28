@@ -3,6 +3,7 @@
 import React from "react";
 import { Sparkles, Clock, ArrowRight, ArrowLeft } from "lucide-react";
 import { TipoTirada } from "@/types/tarot";
+import { Breadcrumbs, EtapaFluxo } from "@/components/ui/Breadcrumbs";
 
 interface SpreadSelectorProps {
   tema: string;
@@ -10,6 +11,7 @@ interface SpreadSelectorProps {
   onSelecionarTipo: (tipo: TipoTirada) => void;
   onIniciarMesa: () => void;
   onVoltar: () => void;
+  onNavegarEtapa?: (etapa: EtapaFluxo) => void;
 }
 
 export function SpreadSelector({
@@ -18,6 +20,7 @@ export function SpreadSelector({
   onSelecionarTipo,
   onIniciarMesa,
   onVoltar,
+  onNavegarEtapa,
 }: SpreadSelectorProps) {
   const opcoes: Array<{
     tipo: TipoTirada;
@@ -34,8 +37,8 @@ export function SpreadSelector({
       subtitulo: "Reflexão Rápida",
       descricao:
         "Uma provocação cirúrgica para quebrar certezas e iluminar um ponto cego imediato do seu tema.",
-      tempoEstimado: "~5 minutos",
-      beneficio: "Ideal para aquecimento criativo, alinhamento rápido ou desbloqueio de ideias.",
+      tempoEstimado: "~5 min",
+      beneficio: "Ideal para aquecimento criativo ou alinhamento rápido.",
     },
     {
       tipo: 3,
@@ -43,37 +46,46 @@ export function SpreadSelector({
       subtitulo: "Exploração Intermediária",
       descricao:
         "Triangulação de forças: confronta tensões culturais, comportamentos de usuários e riscos imprevistos.",
-      tempoEstimado: "~15 minutos",
+      tempoEstimado: "~15 min",
       destaque: "Recomendado",
-      beneficio: "Ideal para design de produtos, workshops de inovação e análise crítica de cenários.",
+      beneficio: "Ideal para workshops e análise crítica de cenários.",
     },
     {
       tipo: 6,
       titulo: "6 Cartas",
       subtitulo: "Exploração Aprofundada",
       descricao:
-        "Mapeamento holístico de futuros: abrange agentes antagônicos, escala massiva, impacto ecológico e obsolescência sistêmica.",
-      tempoEstimado: "~30 minutos",
-      beneficio: "Ideal para pesquisa prospectiva, estratégia de longo prazo e formulação de políticas éticas.",
+        "Mapeamento holístico de futuros: abrange agentes antagônicos, escala massiva, impacto ecológico e obsolescência.",
+      tempoEstimado: "~30 min",
+      beneficio: "Ideal para pesquisa prospectiva e estratégia de longo prazo.",
     },
   ];
 
   return (
-    <div className="mx-auto max-w-5xl px-4 py-4 sm:py-6">
+    <div className="mx-auto max-w-5xl px-4 py-4 sm:py-6 flex flex-col justify-between">
+      {/* Breadcrumbs Navigation (Replaces 'Etapa 2 de 3') */}
+      <div className="flex justify-center mb-4 sm:mb-5">
+        <Breadcrumbs
+          etapaAtual="tirada"
+          onNavegar={(etp) => {
+            if (etp === "tema") onVoltar();
+            else onNavegarEtapa?.(etp);
+          }}
+          temTema={true}
+        />
+      </div>
+
       {/* Header */}
       <div className="text-center max-w-xl mx-auto">
-        <span className="text-[11px] font-semibold uppercase tracking-wider text-accent">
-          Etapa 2 de 3
-        </span>
-        <h2 className="mt-1 font-display text-xl sm:text-2xl md:text-3xl font-bold tracking-tight text-ink">
+        <h2 className="mt-1 font-display text-xl sm:text-2xl font-bold tracking-tight text-ink">
           Escolha a Tirada de Cartas
         </h2>
-        <p className="mt-1 text-xs sm:text-sm text-ink-muted">
-          Defina o nível de profundidade e o número de ângulos que deseja explorar:
+        <p className="mt-0.5 text-xs sm:text-sm text-ink-muted">
+          Defina o nível de profundidade e o número de ângulos para explorar:
         </p>
 
         {/* Selected Theme chip */}
-        <div className="mt-2.5 inline-block rounded-xl border border-line bg-paper px-3 py-1 text-xs text-ink shadow-clean">
+        <div className="mt-2 inline-block rounded-xl border border-line bg-paper-raised px-3 py-1 text-xs text-ink shadow-clean">
           <span className="font-semibold text-accent">Tema:</span> &ldquo;{tema}&rdquo;
         </div>
       </div>

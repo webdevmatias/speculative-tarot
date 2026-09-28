@@ -12,6 +12,7 @@ import { QuestionTrail } from "@/components/tarot/QuestionTrail";
 import { ReadingNavigation } from "@/components/tarot/ReadingNavigation";
 import { ReadingSummary } from "@/components/tarot/ReadingSummary";
 import { ConfirmationModal } from "@/components/tarot/ConfirmationModal";
+import { Breadcrumbs, EtapaFluxo } from "@/components/ui/Breadcrumbs";
 import { sortearCartas, TODAS_AS_CARTAS } from "@/lib/data";
 import {
   carregarSessao,
@@ -22,7 +23,7 @@ import {
 import { CartaSessao, SessaoTarot, TipoTirada } from "@/types/tarot";
 
 export default function TarotEspeculativoApp() {
-  const [etapa, setEtapa] = useState<"inicio" | "tema" | "tirada" | "mesa" | "resumo">("inicio");
+  const [etapa, setEtapa] = useState<"inicio" | "tema" | "tirada" | "mesa" | "perguntas" | "resumo">("inicio");
   const [tema, setTema] = useState<string>("");
   const [tipoTirada, setTipoTirada] = useState<TipoTirada>(3);
   const [cartas, setCartas] = useState<CartaSessao[]>([]);
@@ -75,6 +76,8 @@ export default function TarotEspeculativoApp() {
       const def = TODAS_AS_CARTAS.find((d) => d.id === c.cartaId || d.titulo === c.titulo);
       return {
         ...c,
+        subtitulo: c.subtitulo || def?.subtitulo || "",
+        numeroRomano: c.numeroRomano || def?.numeroRomano || "",
         imagemFrente: c.imagemFrente || def?.imagemFrente,
         imagemVerso: c.imagemVerso || def?.imagemVerso || "/assets/cartas/verso.png",
       };
@@ -209,6 +212,17 @@ export default function TarotEspeculativoApp() {
     }
   };
 
+  // Advance from Mesa (discovery) to Perguntas (questions cockpit)
+  const handleAvancarParaPerguntas = () => {
+    // Reveal first card if not already revealed
+    if (cartas.length > 0 && !cartas[cartaAtivaIndex].virada) {
+      handleVirarCarta(cartaAtivaIndex);
+    }
+    setEtapa("perguntas");
+    persistirEstado(cartas, "perguntas", tema, tipoTirada, cartaAtivaIndex);
+    window.scrollTo({ top: 0, behavior: "smooth" });
+  };
+
   // Go to final summary
   const handleIrParaResumo = () => {
     setEtapa("resumo");
@@ -253,55 +267,92 @@ export default function TarotEspeculativoApp() {
         onNovaTirada={handleIniciarNovaTirada}
         onIrInicio={() => setEtapa("inicio")}
         temSessaoAtiva={cartas.length > 0}
+        sessaoSalva={sessaoSalva}
+        onContinuarSessao={handleContinuarSessao}
       />
 
-      {/* Main Container: fills remaining viewport height */}
+      {/* Main Container: fills remaining viewport height and scrolls smoothly without clipping top content */}
       <main className="flex-1 min-h-0 overflow-y-auto overflow-x-hidden flex flex-col">
-        {/* Step 0: Home Screen */}
-        {etapa === "inicio" && (
-          <HomeScreen
-            sessaoSalva={sessaoSalva}
-            onIniciarNovaTirada={handleIniciarNovaTirada}
-            onContinuarSessao={handleContinuarSessao}
-          />
-        )}
+        {/* Active Stage Screen wrapper */}
+        <div className="flex-1 flex flex-col items-center w-full">
+          {/* Step 0: Home Screen (Fills 1 full screen, pushing footer below the fold) */}
+          {etapa === "inicio" && (
+            <div className="h-[calc(100vh-48px)] min-h-[calc(100vh-48px)] shrink-0 flex flex-col justify-center items-center w-full py-2 sm:py-4">
+              <HomeScreen
+                sessaoSalva={sessaoSalva}
+                onIniciarNovaTirada={handleIniciarNovaTirada}
+                onContinuarSessao={handleContinuarSessao}
+              />
+            </div>
+          )}
 
-        {/* Step 1: Theme Selection */}
-        {etapa === "tema" && (
-          <ThemeSelector
-            temaSelecionado={tema}
-            onSelecionarTema={setTema}
-            onAvancar={handleAvancarParaTirada}
-            onVoltar={() => setEtapa("inicio")}
-          />
-        )}
+          {/* Step 1: Theme Selection */}
+          {etapa === "tema" && (
+            <div className="w-full pt-6 sm:pt-8 pb-12">
+              <ThemeSelector
+                temaSelecionado={tema}
+                onSelecionarTema={setTema}
+                onAvancar={handleAvancarParaTirada}
+                onVoltar={() => setEtapa("inicio")}
+                onNavegarEtapa={(etp) => setEtapa(etp)}
+              />
+            </div>
+          )}
 
-        {/* Step 2: Spread Selection */}
-        {etapa === "tirada" && (
-          <SpreadSelector
-            tema={tema}
-            tipoSelecionado={tipoTirada}
-            onSelecionarTipo={setTipoTirada}
-            onIniciarMesa={handleIniciarMesa}
-            onVoltar={() => setEtapa("tema")}
-          />
-        )}
+          {/* Step 2: Spread Selection */}
+          {etapa === "tirada" && (
+            <div className="w-full pt-6 sm:pt-8 pb-12">
+              <SpreadSelector
+                tema={tema}
+                tipoSelecionado={tipoTirada}
+                onSelecionarTipo={setTipoTirada}
+                onIniciarMesa={handleIniciarMesa}
+                onVoltar={() => setEtapa("tema")}
+                onNavegarEtapa={(etp) => setEtapa(etp)}
+              />
+            </div>
+          )}
 
-        {/* Step 3: Tarot Card Table & Question Trail */}
-        {etapa === "mesa" && cartaAtiva && (
-          <div className="pb-6">
-            {/* The Physical Card Table */}
-            <CardTable
-              tema={tema}
-              tipoTirada={tipoTirada}
-              cartas={cartas}
-              cartaAtivaIndex={cartaAtivaIndex}
-              onSelecionarCarta={handleSelecionarCarta}
-              onVirarCarta={handleVirarCarta}
-            />
+          {/* Step 3: Tarot Card Table (Mesa de Descoberta) */}
+          {etapa === "mesa" && cartaAtiva && (
+            <div className="w-full pt-6 sm:pt-8 pb-12">
+              <CardTable
+                tema={tema}
+                tipoTirada={tipoTirada}
+                cartas={cartas}
+                cartaAtivaIndex={cartaAtivaIndex}
+                onSelecionarCarta={handleSelecionarCarta}
+                onVirarCarta={handleVirarCarta}
+                onNavegarEtapa={(etp) => setEtapa(etp)}
+                onIrParaResumo={handleIrParaResumo}
+                onVoltarParaTirada={() => setEtapa("tirada")}
+                onAvancarParaPerguntas={handleAvancarParaPerguntas}
+              />
+            </div>
+          )}
 
-            {/* Questions Trail (Appears outside and below the card) */}
-            {cartaAtiva.virada ? (
+          {/* Step 4: Questions Trail (Etapa de Perguntas e Reflexão) */}
+          {etapa === "perguntas" && cartaAtiva && (
+            <div className="w-full pt-6 sm:pt-8 pb-28">
+              {/* Breadcrumbs Navigation with generous bottom spacing */}
+              <div className="flex justify-center mb-3 sm:mb-4">
+                <Breadcrumbs
+                  etapaAtual="perguntas"
+                  onNavegar={(etp: EtapaFluxo) => setEtapa(etp)}
+                  temTema={true}
+                  temCartas={true}
+                />
+              </div>
+
+              {/* Selected Theme Header (Clean & Minimalist) */}
+              <div className="flex justify-center mb-3 px-4 text-center">
+                <div className="inline-flex items-center gap-1.5 rounded-lg border border-line bg-paper-raised px-3 py-1 text-xs text-ink shadow-clean">
+                  <span className="font-semibold text-accent">Tema:</span>
+                  <span className="font-bold text-ink">&ldquo;{tema}&rdquo;</span>
+                </div>
+              </div>
+
+              {/* Questions Trail Cockpit */}
               <QuestionTrail
                 carta={cartaAtiva}
                 cartaIndex={cartaAtivaIndex}
@@ -311,43 +362,41 @@ export default function TarotEspeculativoApp() {
                 onCartaAnterior={cartaAtivaIndex > 0 ? handleCartaAnterior : undefined}
                 onVerResumo={handleIrParaResumo}
               />
-            ) : (
-              <div className="mt-8 text-center px-4">
-                <p className="text-sm text-ink-muted">
-                  Esta carta ainda está virada para baixo. Toque nela na mesa acima para revelar suas perguntas.
-                </p>
-              </div>
-            )}
 
-            {/* Bottom Timeline Navigation for 3 and 6 card spreads */}
-            {tipoTirada > 1 && (
+              {/* Fixed Bottom Cards Timeline Navigation */}
               <ReadingNavigation
                 cartas={cartas}
                 cartaAtivaIndex={cartaAtivaIndex}
                 onSelecionarCarta={handleSelecionarCarta}
                 onVerResumo={handleIrParaResumo}
               />
-            )}
-          </div>
-        )}
+            </div>
+          )}
 
-        {/* Step 4: Final Summary Screen */}
-        {etapa === "resumo" && (
-          <ReadingSummary
-            sessao={{
-              tema,
-              tipoTirada,
-              cartas,
-              cartaAtualIndex: cartaAtivaIndex,
-              etapa: "resumo",
-              dataCriacao: sessaoSalva?.dataCriacao || new Date().toISOString(),
-              ultimaModificacao: new Date().toISOString(),
-            }}
-            onVoltarRevisar={() => setEtapa("mesa")}
-            onNovaTirada={handleIniciarNovaTirada}
-            onCopiarReflexao={handleCopiarReflexao}
-          />
-        )}
+          {/* Step 5: Final Summary Screen (Síntese) */}
+          {etapa === "resumo" && (
+            <div className="w-full pt-6 sm:pt-8 pb-12">
+              <ReadingSummary
+                sessao={{
+                  tema,
+                  tipoTirada,
+                  cartas,
+                  cartaAtualIndex: cartaAtivaIndex,
+                  etapa: "resumo",
+                  dataCriacao: sessaoSalva?.dataCriacao || new Date().toISOString(),
+                  ultimaModificacao: new Date().toISOString(),
+                }}
+                onVoltarRevisar={() => setEtapa("perguntas")}
+                onNovaTirada={handleIniciarNovaTirada}
+                onCopiarReflexao={handleCopiarReflexao}
+                onNavegarEtapa={(etp) => setEtapa(etp)}
+              />
+            </div>
+          )}
+        </div>
+
+        {/* Footer: Offscreen, accessible by scrolling down only on home screen */}
+        {etapa === "inicio" && <Footer />}
       </main>
 
       {/* Confirmation Modal */}
@@ -365,9 +414,6 @@ export default function TarotEspeculativoApp() {
         visivel={toast.visivel}
         onFechar={() => setToast({ visivel: false, mensagem: "" })}
       />
-
-      {/* Footer */}
-      <Footer />
     </div>
   );
 }

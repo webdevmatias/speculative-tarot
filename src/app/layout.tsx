@@ -1,21 +1,21 @@
 import type { Metadata } from "next";
-import { Cinzel, Inter } from "next/font/google";
+import { Space_Grotesk, Plus_Jakarta_Sans } from "next/font/google";
 import "./globals.css";
 
-const cinzel = Cinzel({
-  variable: "--font-cinzel",
+const spaceGrotesk = Space_Grotesk({
+  variable: "--font-space-grotesk",
   subsets: ["latin"],
   display: "swap",
 });
 
-const inter = Inter({
-  variable: "--font-inter",
+const plusJakartaSans = Plus_Jakarta_Sans({
+  variable: "--font-plus-jakarta",
   subsets: ["latin"],
   display: "swap",
 });
 
 export const metadata: Metadata = {
-  title: "Tarô Especulativo — Ferramenta de Design Especulativo e Pensamento de Futuros",
+  title: "Tarô Especulativo — Design Especulativo e Pensamento de Futuros",
   description:
     "Explore cenários futuros, consequências imprevistas, vieses ocultos e dilemas éticos através de tiradas de cartas com perguntas provocativas.",
   keywords: [
@@ -35,7 +35,7 @@ export default function RootLayout({
   children: React.ReactNode;
 }>) {
   return (
-    <html lang="pt-BR" className={`${cinzel.variable} ${inter.variable}`} suppressHydrationWarning>
+    <html lang="pt-BR" className={`${spaceGrotesk.variable} ${plusJakartaSans.variable}`} suppressHydrationWarning>
       <body
         className="min-h-screen bg-paper text-ink font-sans selection:bg-accent-soft selection:text-accent antialiased overflow-x-hidden flex flex-col"
         suppressHydrationWarning

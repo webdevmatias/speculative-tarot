@@ -75,7 +75,8 @@ export function exportarComoMarkdown(sessao: SessaoTarot): string {
     md += `---\n\n`;
   });
 
-  md += `### Síntese Estrutural da Tirada\n`;
+  md += `### Resumo da Sessão\n`;
+  md += `- **Tema:** "${sessao.tema}"\n`;
   md += `- **Total de Cartas Exploradas:** ${sessao.cartas.length}\n`;
   const totalPerguntas = sessao.cartas.reduce((acc, c) => acc + c.perguntas.length, 0);
   const totalRespondidas = sessao.cartas.reduce(
@@ -84,7 +85,7 @@ export function exportarComoMarkdown(sessao: SessaoTarot): string {
   );
   md += `- **Perguntas Respondidas:** ${totalRespondidas} de ${totalPerguntas}\n`;
   md += `- **Ângulos Abordados:** ${sessao.cartas.map((c) => c.titulo).join(", ")}\n\n`;
-  md += `*Gerado com Tarô Especulativo — Ferramenta de Design Especulativo e Pensamento de Futuros.*\n`;
+  md += `*Gerado com Tarô Especulativo — Design Especulativo e Pensamento de Futuros.*\n`;
 
   return md;
 }

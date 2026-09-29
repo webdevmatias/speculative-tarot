@@ -66,7 +66,7 @@ export function ThemeSelector({
           Escolha o Tema de Investigação
         </h2>
         <p className="mt-1 text-xs sm:text-sm text-ink-muted">
-          Selecione um cenário especulativo pré-configurado ou defina sua própria hipótese de futuro.
+          Selecione ou defina sua própria hipótese de futuro.
         </p>
       </div>
 
@@ -75,13 +75,12 @@ export function ThemeSelector({
         <div className="inline-flex rounded-lg border border-line bg-paper p-1 shadow-clean">
           <button
             onClick={() => setModo("predefinido")}
-            className={`flex items-center gap-2 rounded-lg px-4 py-1.5 text-xs sm:text-sm font-medium transition-all focus-visible:outline-2 focus-visible:outline-accent ${
-              modo === "predefinido"
-                ? "bg-accent-soft text-accent border border-accent/20 shadow-clean"
-                : "text-ink-muted hover:text-ink"
-            }`}
+            className={`flex items-center gap-2 rounded-lg px-4 py-1.5 text-xs sm:text-sm font-medium transition-all focus-visible:outline-2 focus-visible:outline-accent ${modo === "predefinido"
+              ? "bg-accent-soft text-accent border border-accent/20 shadow-clean"
+              : "text-ink-muted hover:text-ink"
+              }`}
           >
-            <span>Temas Predefinidos (50)</span>
+            <span>Temas Predefinidos</span>
           </button>
           <button
             onClick={() => {
@@ -90,14 +89,13 @@ export function ThemeSelector({
                 onSelecionarTema(temaPersonalizadoTexto);
               }
             }}
-            className={`flex items-center gap-2 rounded-lg px-4 py-1.5 text-xs sm:text-sm font-medium transition-all focus-visible:outline-2 focus-visible:outline-accent ${
-              modo === "personalizado"
-                ? "bg-accent-soft text-accent border border-accent/20 shadow-clean"
-                : "text-ink-muted hover:text-ink"
-            }`}
+            className={`flex items-center gap-2 rounded-lg px-4 py-1.5 text-xs sm:text-sm font-medium transition-all focus-visible:outline-2 focus-visible:outline-accent ${modo === "personalizado"
+              ? "bg-accent-soft text-accent border border-accent/20 shadow-clean"
+              : "text-ink-muted hover:text-ink"
+              }`}
           >
             <PlusCircle className="h-4 w-4" />
-            <span>Criar meu próprio tema</span>
+            <span>Criar tema</span>
           </button>
         </div>
       </div>
@@ -124,11 +122,10 @@ export function ThemeSelector({
                 <button
                   key={cat}
                   onClick={() => setCategoriaAtiva(cat)}
-                  className={`shrink-0 rounded-lg px-3 py-1 text-xs font-medium transition-all focus-visible:outline-2 focus-visible:outline-accent ${
-                    categoriaAtiva === cat
-                      ? "border border-accent bg-accent text-white"
-                      : "border border-line bg-paper-raised text-ink-muted hover:border-accent/40 hover:text-ink"
-                  }`}
+                  className={`shrink-0 rounded-lg px-3 py-1 text-xs font-medium transition-all focus-visible:outline-2 focus-visible:outline-accent ${categoriaAtiva === cat
+                    ? "border border-accent bg-accent text-white"
+                    : "border border-line bg-paper-raised text-ink-muted hover:border-accent/40 hover:text-ink"
+                    }`}
                 >
                   {cat}
                 </button>
@@ -144,11 +141,10 @@ export function ThemeSelector({
                 <div
                   key={tema.id}
                   onClick={() => handleEscolherPredefinido(tema)}
-                  className={`group relative cursor-pointer rounded-xl border p-4 transition-all duration-200 focus-visible:outline-2 focus-visible:outline-accent flex flex-col justify-between ${
-                    isSelected
-                      ? "border-accent bg-accent-soft shadow-clean ring-1 ring-accent"
-                      : "border-line bg-paper-raised hover:border-accent/40 hover:bg-accent-soft/30 shadow-clean"
-                  }`}
+                  className={`group relative cursor-pointer rounded-xl border p-4 transition-all duration-200 focus-visible:outline-2 focus-visible:outline-accent flex flex-col justify-between ${isSelected
+                    ? "border-accent bg-accent-soft shadow-clean ring-1 ring-accent"
+                    : "border-line bg-paper-raised hover:border-accent/40 hover:bg-accent-soft/30 shadow-clean"
+                    }`}
                 >
                   <div>
                     <div className="flex items-start justify-between gap-2">
@@ -174,11 +170,10 @@ export function ThemeSelector({
                       {isSelected ? "Tema selecionado" : "Clique para selecionar"}
                     </span>
                     <div
-                      className={`flex h-4 w-4 items-center justify-center rounded-full border transition-all ${
-                        isSelected
-                          ? "border-accent bg-accent text-white"
-                          : "border-line bg-paper group-hover:border-accent/40"
-                      }`}
+                      className={`flex h-4 w-4 items-center justify-center rounded-full border transition-all ${isSelected
+                        ? "border-accent bg-accent text-white"
+                        : "border-line bg-paper group-hover:border-accent/40"
+                        }`}
                     >
                       {isSelected && <Check className="h-2.5 w-2.5 stroke-[3]" />}
                     </div>
@@ -234,19 +229,10 @@ export function ThemeSelector({
 
       {/* Mode 2: Custom Theme */}
       {modo === "personalizado" && (
-        <div className="mt-8 max-w-2xl mx-auto rounded-2xl border border-line bg-paper-raised p-6 sm:p-8 shadow-clean">
-          <div className="flex items-center gap-2 text-xs font-semibold text-accent uppercase tracking-wider">
-            <PlusCircle className="h-4 w-4" />
-            <span>Defina seu Cenário Especulativo</span>
-          </div>
-
-          <h3 className="mt-2 text-lg font-bold text-ink">
-            Qual futuro, tecnologia ou hipótese você deseja investigar?
+        <div className="mt-8 max-w-3xl mx-auto rounded-2xl border border-line bg-paper-raised p-6 sm:p-8 shadow-clean">
+          <h3 className="my-2 text-lg font-bold text-center">
+            Qual futuro, tecnologia ou hipótese <br /> você deseja investigar?
           </h3>
-
-          <p className="mt-1 text-xs text-ink-muted">
-            Formule uma pergunta ou descreva uma condição de futuro alternativo.
-          </p>
 
           <div className="mt-4">
             <textarea
@@ -270,8 +256,6 @@ export function ThemeSelector({
               {[
                 "Como seria uma sociedade onde humanos vivem 200 anos?",
                 "E se todo trabalho intelectual fosse automatizado por agentes de IA?",
-                "Um sistema judiciário totalmente gerido por algoritmos preditivos.",
-                "E se o sono biológico pudesse ser substituído por recargas eletromagnéticas?",
               ].map((exemplo) => (
                 <button
                   key={exemplo}

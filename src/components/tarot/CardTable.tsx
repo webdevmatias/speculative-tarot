@@ -150,11 +150,10 @@ export function CardTable({
                           if (!carta.virada) onVirarCarta(idx);
                           else onSelecionarCarta(idx);
                         }}
-                        className={`rounded-lg px-3 py-1 text-xs font-medium transition-colors focus-visible:outline-2 focus-visible:outline-accent ${
-                          cartaAtivaIndex === idx
-                            ? "bg-accent-soft text-accent border border-accent/30 font-semibold"
-                            : "text-ink-muted hover:text-ink hover:bg-accent-soft/40"
-                        }`}
+                        className={`rounded-lg px-3 py-1 text-xs font-medium transition-colors focus-visible:outline-2 focus-visible:outline-accent ${cartaAtivaIndex === idx
+                          ? "bg-accent-soft text-accent border border-accent/30 font-semibold"
+                          : "text-ink-muted hover:text-ink hover:bg-accent-soft/40"
+                          }`}
                       >
                         {carta.virada ? `${carta.numeroRomano} • ${carta.titulo}` : `Carta ${idx + 1}`}
                       </button>
@@ -197,11 +196,10 @@ export function CardTable({
                     <button
                       key={c.id}
                       onClick={() => onSelecionarCarta(idx)}
-                      className={`h-2.5 rounded-full transition-all focus-visible:outline-2 focus-visible:outline-accent ${
-                        cartaAtivaIndex === idx
-                          ? "w-8 bg-accent"
-                          : "w-2.5 bg-line hover:bg-ink-muted/40"
-                      }`}
+                      className={`h-2.5 rounded-full transition-all focus-visible:outline-2 focus-visible:outline-accent ${cartaAtivaIndex === idx
+                        ? "w-8 bg-accent"
+                        : "w-2.5 bg-line hover:bg-ink-muted/40"
+                        }`}
                       aria-label={`Ver Carta ${idx + 1}`}
                     />
                   ))}
@@ -231,11 +229,10 @@ export function CardTable({
                           if (!carta.virada) onVirarCarta(idx);
                           else onSelecionarCarta(idx);
                         }}
-                        className={`rounded-lg px-3 py-1 text-xs font-medium transition-colors focus-visible:outline-2 focus-visible:outline-accent ${
-                          cartaAtivaIndex === idx
-                            ? "bg-accent-soft text-accent border border-accent/30 font-semibold"
-                            : "text-ink-muted hover:text-ink hover:bg-accent-soft/40"
-                        }`}
+                        className={`rounded-lg px-3 py-1 text-xs font-medium transition-colors focus-visible:outline-2 focus-visible:outline-accent ${cartaAtivaIndex === idx
+                          ? "bg-accent-soft text-accent border border-accent/30 font-semibold"
+                          : "text-ink-muted hover:text-ink hover:bg-accent-soft/40"
+                          }`}
                       >
                         {carta.virada ? `${carta.numeroRomano} • ${carta.titulo}` : `Carta ${idx + 1}`}
                       </button>
@@ -281,11 +278,10 @@ export function CardTable({
                         if (!c.virada) onVirarCarta(idx);
                         else onSelecionarCarta(idx);
                       }}
-                      className={`h-2.5 rounded-full transition-all focus-visible:outline-2 focus-visible:outline-accent ${
-                        cartaAtivaIndex === idx
-                          ? "w-8 bg-accent"
-                          : "w-2.5 bg-line hover:bg-ink-muted/40"
-                      }`}
+                      className={`h-2.5 rounded-full transition-all focus-visible:outline-2 focus-visible:outline-accent ${cartaAtivaIndex === idx
+                        ? "w-8 bg-accent"
+                        : "w-2.5 bg-line hover:bg-ink-muted/40"
+                        }`}
                       aria-label={`Ver Carta ${idx + 1}`}
                     />
                   ))}
@@ -343,29 +339,18 @@ export function CardTable({
                             if (!c.virada) onVirarCarta(idx);
                             else onSelecionarCarta(idx);
                           }}
-                          className={`h-7 min-w-[28px] px-2 rounded text-xs font-mono font-medium transition-all ${
-                            cartaAtivaIndex === idx
-                              ? "bg-accent text-white shadow-clean"
-                              : c.virada
+                          className={`h-7 min-w-[28px] px-2 rounded text-xs font-mono font-medium transition-all ${cartaAtivaIndex === idx
+                            ? "bg-accent text-white shadow-clean"
+                            : c.virada
                               ? "bg-accent-soft text-accent hover:bg-accent-soft/80"
                               : "bg-paper-raised border border-line text-ink-muted hover:text-ink"
-                          }`}
+                            }`}
                           title={`Carta ${idx + 1}: ${c.virada ? c.titulo : "Virada para baixo"}`}
                         >
                           {c.virada ? c.numeroRomano : `${idx + 1}`}
                         </button>
                       ))}
                     </div>
-                  )}
-
-                  {onAvancarParaPerguntas && (
-                    <button
-                      onClick={onAvancarParaPerguntas}
-                      className="inline-flex items-center gap-1.5 rounded-lg bg-accent px-3 py-1.5 text-xs font-semibold text-white shadow-clean hover:bg-accent/90 transition-colors focus-visible:outline-2 focus-visible:outline-accent"
-                    >
-                      <span>Responder Provocações</span>
-                      <ArrowRight className="h-3.5 w-3.5" />
-                    </button>
                   )}
                 </div>
               </div>

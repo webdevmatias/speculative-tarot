@@ -31,35 +31,35 @@ export function SpreadSelector({
     destaque?: string;
     beneficio: string;
   }> = [
-    {
-      tipo: 1,
-      titulo: "1 Carta",
-      subtitulo: "Reflexão Rápida",
-      descricao:
-        "Uma provocação cirúrgica para quebrar certezas e iluminar um ponto cego imediato do seu tema.",
-      tempoEstimado: "~5 min",
-      beneficio: "Ideal para aquecimento criativo ou alinhamento rápido.",
-    },
-    {
-      tipo: 3,
-      titulo: "3 Cartas",
-      subtitulo: "Exploração Intermediária",
-      descricao:
-        "Triangulação de forças: confronta tensões culturais, comportamentos de usuários e riscos imprevistos.",
-      tempoEstimado: "~15 min",
-      destaque: "Recomendado",
-      beneficio: "Ideal para workshops e análise crítica de cenários.",
-    },
-    {
-      tipo: 6,
-      titulo: "6 Cartas",
-      subtitulo: "Exploração Aprofundada",
-      descricao:
-        "Mapeamento holístico de futuros: abrange agentes antagônicos, escala massiva, impacto ecológico e obsolescência.",
-      tempoEstimado: "~30 min",
-      beneficio: "Ideal para pesquisa prospectiva e estratégia de longo prazo.",
-    },
-  ];
+      {
+        tipo: 1,
+        titulo: "1 Carta",
+        subtitulo: "Reflexão Rápida",
+        descricao:
+          "Uma provocação cirúrgica para quebrar certezas e iluminar um ponto cego imediato do seu tema.",
+        tempoEstimado: "~5 min",
+        beneficio: "Ideal para aquecimento criativo ou alinhamento rápido.",
+      },
+      {
+        tipo: 3,
+        titulo: "3 Cartas",
+        subtitulo: "Exploração Intermediária",
+        descricao:
+          "Triangulação de forças: confronta tensões culturais, comportamentos de usuários e riscos imprevistos.",
+        tempoEstimado: "~15 min",
+        destaque: "Recomendado",
+        beneficio: "Ideal para workshops e análise crítica de cenários.",
+      },
+      {
+        tipo: 6,
+        titulo: "6 Cartas",
+        subtitulo: "Exploração Aprofundada",
+        descricao:
+          "Mapeamento holístico de futuros: abrange agentes antagônicos, escala massiva, impacto ecológico e obsolescência.",
+        tempoEstimado: "~30 min",
+        beneficio: "Ideal para pesquisa prospectiva e estratégia de longo prazo.",
+      },
+    ];
 
   return (
     <div className="mx-auto max-w-5xl px-4 py-4 sm:py-6 flex flex-col justify-between">
@@ -81,7 +81,7 @@ export function SpreadSelector({
           Escolha a Tirada de Cartas
         </h2>
         <p className="mt-0.5 text-xs sm:text-sm text-ink-muted">
-          Defina o nível de profundidade e o número de ângulos para explorar:
+          Defina o número de ângulos para explorar:
         </p>
 
         {/* Selected Theme chip */}
@@ -99,11 +99,10 @@ export function SpreadSelector({
             <div
               key={opcao.tipo}
               onClick={() => onSelecionarTipo(opcao.tipo)}
-              className={`group relative cursor-pointer flex flex-col justify-between rounded-xl border p-4 sm:p-5 transition-all duration-200 focus-visible:outline-2 focus-visible:outline-accent ${
-                isSelected
-                  ? "border-accent bg-accent-soft shadow-clean ring-1 ring-accent"
-                  : "border-line bg-paper-raised hover:border-accent/40 hover:bg-accent-soft/30 shadow-clean"
-              }`}
+              className={`group relative cursor-pointer flex flex-col justify-between rounded-xl border p-4 sm:p-5 transition-all duration-200 focus-visible:outline-2 focus-visible:outline-accent ${isSelected
+                ? "border-accent bg-accent-soft shadow-clean ring-1 ring-accent"
+                : "border-line bg-paper-raised hover:border-accent/40 hover:bg-accent-soft/30 shadow-clean"
+                }`}
             >
               {/* Highlight pill */}
               {opcao.destaque && (
@@ -119,11 +118,10 @@ export function SpreadSelector({
                     {Array.from({ length: opcao.tipo }).map((_, i) => (
                       <div
                         key={i}
-                        className={`relative h-11 w-7.5 overflow-hidden rounded border transition-all shadow-sm ${
-                          isSelected
-                            ? "border-accent ring-1 ring-accent"
-                            : "border-line group-hover:border-accent/30"
-                        }`}
+                        className={`relative h-11 w-7.5 overflow-hidden rounded border transition-all shadow-sm ${isSelected
+                          ? "border-accent ring-1 ring-accent"
+                          : "border-line group-hover:border-accent/30"
+                          }`}
                         style={{
                           transform: `rotate(${(i - (opcao.tipo - 1) / 2) * 6}deg)`,
                         }}
@@ -167,16 +165,14 @@ export function SpreadSelector({
                 </span>
 
                 <div
-                  className={`flex h-4 w-4 items-center justify-center rounded-full border transition-all ${
-                    isSelected
-                      ? "border-accent bg-accent text-white"
-                      : "border-line bg-paper group-hover:border-accent/40"
-                  }`}
+                  className={`flex h-4 w-4 items-center justify-center rounded-full border transition-all ${isSelected
+                    ? "border-accent bg-accent text-white"
+                    : "border-line bg-paper group-hover:border-accent/40"
+                    }`}
                 >
                   <div
-                    className={`h-1.5 w-1.5 rounded-full transition-colors ${
-                      isSelected ? "bg-white" : "bg-transparent"
-                    }`}
+                    className={`h-1.5 w-1.5 rounded-full transition-colors ${isSelected ? "bg-white" : "bg-transparent"
+                      }`}
                   />
                 </div>
               </div>
@@ -200,7 +196,7 @@ export function SpreadSelector({
           className="flex items-center gap-2 rounded-lg bg-accent px-5 py-2 text-xs sm:text-sm font-semibold text-white shadow-clean transition-colors hover:bg-accent/90 focus-visible:outline-2 focus-visible:outline-accent"
         >
           <Sparkles className="h-4 w-4" />
-          <span>Dispor as Cartas na Mesa</span>
+          <span>Dispor as Cartas</span>
           <ArrowRight className="h-4 w-4" />
         </button>
       </div>

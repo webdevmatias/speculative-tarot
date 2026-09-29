@@ -31,7 +31,7 @@ export function Breadcrumbs({
   return (
     <nav
       aria-label="Breadcrumb de Etapas"
-      className={`flex items-center justify-center gap-1 sm:gap-2 text-[9px] sm:text-xs py-1.5 px-3 select-none ${className}`}
+      className={`flex items-center justify-center gap-1 sm:gap-2 text-[12px] sm:text-xs py-1.5 px-3 select-none ${className}`}
     >
       {etapas.map((etp, idx) => {
         const isAtual = etapaAtual === etp.id;

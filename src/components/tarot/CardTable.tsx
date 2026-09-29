@@ -83,7 +83,7 @@ export function CardTable({
         </div>
 
         {/* Guidance tip */}
-        <div className="mt-1 flex items-center justify-center gap-1 text-center text-[11px] text-ink-muted">
+        <div className="my-4 flex items-center justify-center gap-1 text-center text-[11px] text-ink-muted">
           <Sparkles className="h-3 w-3 text-accent shrink-0" />
           <span>
             {!todasViradas

@@ -21,17 +21,17 @@ export function Breadcrumbs({
   className = "",
 }: BreadcrumbsProps) {
   const etapas: Array<{ id: EtapaFluxo; label: string; habilitado: boolean }> = [
-    { id: "tema", label: "1. Tema", habilitado: true },
-    { id: "tirada", label: "2. Tirada", habilitado: temTema },
-    { id: "mesa", label: "3. Mesa", habilitado: temCartas },
-    { id: "perguntas", label: "4. Perguntas", habilitado: temCartas },
-    { id: "resumo", label: "5. Síntese", habilitado: temCartas },
+    { id: "tema", label: "Tema", habilitado: true },
+    { id: "tirada", label: "Tirada", habilitado: temTema },
+    { id: "mesa", label: "Mesa", habilitado: temCartas },
+    { id: "perguntas", label: "Perguntas", habilitado: temCartas },
+    { id: "resumo", label: "Síntese", habilitado: temCartas },
   ];
 
   return (
     <nav
       aria-label="Breadcrumb de Etapas"
-      className={`flex items-center justify-center gap-1 sm:gap-2 text-[11px] sm:text-xs py-1.5 px-3 select-none ${className}`}
+      className={`flex items-center justify-center gap-1 sm:gap-2 text-[9px] sm:text-xs py-1.5 px-3 select-none ${className}`}
     >
       {etapas.map((etp, idx) => {
         const isAtual = etapaAtual === etp.id;
@@ -46,13 +46,12 @@ export function Breadcrumbs({
               type="button"
               disabled={!podeClicar}
               onClick={() => podeClicar && onNavegar?.(etp.id)}
-              className={`rounded-md px-2 py-0.5 font-medium transition-all ${
-                isAtual
-                  ? "bg-accent text-white font-semibold shadow-clean"
-                  : podeClicar
+              className={`rounded-md px-2 py-0.5 font-medium transition-all ${isAtual
+                ? "bg-accent text-white font-semibold shadow-clean"
+                : podeClicar
                   ? "text-ink-muted hover:text-ink hover:bg-accent-soft/70 cursor-pointer"
                   : "text-ink-muted/50 cursor-default"
-              }`}
+                }`}
             >
               {etp.label}
             </button>
